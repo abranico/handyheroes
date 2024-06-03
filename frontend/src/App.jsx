@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { Landing, Login } from './pages'
+import { Landing, Login, Register } from './pages'
 import NotFound from './routes/NotFound'
 
 function App () {
@@ -11,6 +11,10 @@ function App () {
     {
       path: '/login',
       element: <Login />
+    },
+    {
+      path: '/register',
+      element: <Register />
     },
     {
       path: '*',
