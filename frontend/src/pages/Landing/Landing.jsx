@@ -1,6 +1,6 @@
 const Landing = () => {
   return (
-    <div className="h-screen overflow-y-hidden  ">
+    <div className="h-screen flex flex-col">
       <header className="flex justify-between mx-14 items-center p-6">
         <div className="flex items-center">
           <img
@@ -15,7 +15,8 @@ const Landing = () => {
         </button>
       </header>
 
-      <main className="flex  items-center justify-around mx-14 p-6 h-1xl">
+      <main className="flex items-start justify-center mx-14 p-6 mb-20 ">
+        <div className="w-full flex items-center justify-around">
         <div className="flex flex-col gap-7">
           <h2 className="text-4xl font-bold text-blue-900">
             Uniendo Oficios y Hogares.
@@ -41,9 +42,10 @@ const Landing = () => {
             className="max-w-80 h-auto rounded-3xl"
           />
         </div>
+        </div>
       </main>
 
-      <footer className="bg-blue-800 text-white  text-center  py-11 h-full ">
+      <footer className="bg-blue-900 text-white text-center py-10 h-full ">
         <div className="flex justify-center space-x-4">
           <a href="#">
             <svg
@@ -103,7 +105,7 @@ const Landing = () => {
         <p className="mt-4">&copy; Copyright 2024 - HandyHeroes</p>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Landing;
+export default Landing
