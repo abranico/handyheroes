@@ -1,6 +1,6 @@
 const ChooseRol = ({ onCompleteBasicData, onSetRol, rol }) => {
   return (
-    <main className="mt-6 max-w-xl mx-auto">
+    <main className="mt-6 max-w-xl mx-auto  ">
         <h2 className="font-bold text-3xl text-gray-600 text-center ">Selecciona tu Rol en HandyHeroes</h2>
         <p className="mt-6 mb-2 text-gray-600 text-center">Decide si estás buscando servicios para tu hogar o si eres un profesional que ofrece tus habilidades. Selecciona tu rol para personalizar tu experiencia en HandyHeroes.</p>
         <div className="mt-12 flex justify-between w-full">
