@@ -1,8 +1,17 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { AuthenticationContext } from "../context/authentication/authentication.context";
+import { Navbar } from "../components";
+const Protected = ({ children }) => {
+  const { user } = useContext(AuthenticationContext);
 
-const Protected = ({ isSignedIn }) => {
-  if (!isSignedIn) return <Navigate to="/login" replace />
-  return <Outlet />
-}
+  if (!user) return <Navigate to="/login" replace />;
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  );
+};
 
-export default Protected
+export default Protected;

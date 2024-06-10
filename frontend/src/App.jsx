@@ -1,32 +1,60 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { Landing, Login, Register } from './pages'
-import NotFound from './routes/NotFound'
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Services, Landing, Login, Register } from "./pages";
+import NotFound from "./routes/NotFound";
+import { AuthenticationContextProvider } from "./context/authentication/authentication.context";
+import Protected from "./routes/Protected";
 
-function App () {
+function App() {
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <Landing />
+      path: "/",
+      element: <Landing />,
     },
     {
-      path: '/login',
-      element: <Login />
+      path: "/login",
+      element: <Login />,
     },
     {
-      path: '/register',
-      element: <Register />
+      path: "/register",
+      element: <Register />,
     },
     {
-      path: '*',
-      element: <NotFound />
-    }
-  ])
+      path: "/services",
+      element: (
+        <Protected>
+          <Services />
+        </Protected>
+      ),
+    },
+    {
+      path: "/profile",
+      element: (
+        <Protected>
+          <p>profile</p>
+        </Protected>
+      ),
+    },
+    {
+      path: "/logout",
+      element: (
+        <Protected>
+          <p>logout</p>
+        </Protected>
+      ),
+    },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+  ]);
 
   return (
     <>
-    <RouterProvider router={router} />
+      <AuthenticationContextProvider>
+        <RouterProvider router={router} />
+      </AuthenticationContextProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
