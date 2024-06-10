@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import BasicData from './components/basicData/BasicData'
 import ChooseRol from './components/chooseRol/ChooseRol'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
   const [basicData, setBasicData] = useState(false)
@@ -28,7 +29,7 @@ const Register = () => {
             </a>
             <div className="flex gap-5 items-center">
             <a href="" className="text-gray-500 hover:opacity-60">¿Ya eres usuario?</a>
-            <button className="border border-black px-5 py-1 rounded hover:opacity-60 ">Iniciar sesión</button>
+            <Link to="/login" className="border border-black px-5 py-1 rounded hover:opacity-60 ">Iniciar sesión</Link>
             </div>
           </nav>
         </header>

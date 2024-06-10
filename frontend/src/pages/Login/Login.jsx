@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Login = () => {
   return (
     <div className="max-w-md mx-auto flex items-center flex-col justify-center h-screen">
@@ -25,7 +27,7 @@ const Login = () => {
               className="bg-blue-500 w-full text-white px-6 py-3 rounded-md mr-2 transition duration-300 hover:bg-blue-600 font-bold">CONTINUAR</button>
           </div>
           <div>
-            <a className="block mt-12 mb-6 text-gray-500 hover:text-gray-700 cursor-pointer text-center w-full">¿Eres nuevo? COMENZAR - ES GRATIS</a>
+            <Link to="/register" className="block mt-12 mb-6 text-gray-500 hover:text-gray-700 cursor-pointer text-center w-full">¿Eres nuevo? COMENZAR - ES GRATIS</Link>
           </div>
         </form>
 

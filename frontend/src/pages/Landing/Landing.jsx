@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Landing = () => {
   return (
     <div className="h-screen flex flex-col">
@@ -10,9 +12,9 @@ const Landing = () => {
           />
           <h1 className="text-2xl font-bold text-blue-900 ml-2">HandyHeroes</h1>
         </div>
-        <button className="bg-blue-500 text-white px-10 py-2 rounded-lg hover:bg-blue-600 font-bold">
+        <Link to="/login" className="bg-blue-500 text-white px-10 py-2 rounded-lg hover:bg-blue-600 font-bold">
           Unirse
-        </button>
+        </Link>
       </header>
 
       <main className="flex items-start justify-center mx-14 p-6 mb-20 ">
@@ -27,12 +29,12 @@ const Landing = () => {
             y la oferta de servicios domÃ©sticos.
           </p>
           <div className="mt-6">
-            <button className="bg-blue-500 text-white px-6 py-3 rounded-md mr-2 transition duration-300 hover:bg-blue-600 font-bold">
+            <Link to="/login" className="bg-blue-500 text-white px-6 py-3 rounded-md mr-2 transition duration-300 hover:bg-blue-600 font-bold">
               BUSCAR PROFESIONAL
-            </button>
-            <button className="bg-purple-500 text-white px-6 py-3 rounded-md ml-2 transition duration-300 hover:bg-purple-600 font-bold">
+            </Link>
+            <Link to="/login" className="bg-purple-500 text-white px-6 py-3 rounded-md ml-2 transition duration-300 hover:bg-purple-600 font-bold">
               OFRECER SERVICIO
-            </button>
+            </Link>
           </div>
         </div>
         <div className="mt-10">
