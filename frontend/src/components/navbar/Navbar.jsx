@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthenticationContext } from "../../context/authentication/authentication.context";
 
 const Navbar = () => {
+  const { handleLogout } = useContext(AuthenticationContext);
   return (
     <nav className="flex justify-between mx-14 items-center p-6 ">
       <a className="flex items-center cursor-pointer">
@@ -75,8 +78,8 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/logout"
+          <button
+            onClick={handleLogout}
             className={({ isActive }) =>
               `flex items-center gap-2 justify-center py-2 w-40 px-4 hover:bg-black/10 transition-all ${
                 isActive ? "bg-black/10" : ""
@@ -101,7 +104,7 @@ const Navbar = () => {
               <path d="M6 15l-3 -3" />
             </svg>
             <span>Cerrar sesión</span>
-          </NavLink>
+          </button>
         </li>
       </ul>
     </nav>

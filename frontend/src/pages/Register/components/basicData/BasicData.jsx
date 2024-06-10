@@ -1,6 +1,20 @@
 import { Input } from "../../../../components";
 
-const BasicData = ({ onCompleteBasicData }) => {
+const BasicData = ({
+  onCompleteBasicData,
+  username,
+  handleUsername,
+  firstname,
+  handleFirstname,
+  lastname,
+  handleLastname,
+  email,
+  handleEmail,
+  password,
+  handlePassword,
+  validationPassword,
+  handleValidationPassword,
+}) => {
   return (
     <main className="mt-6 max-w-lg mx-auto">
       <h2 className="font-bold text-3xl text-gray-600 text-center ">
@@ -8,20 +22,47 @@ const BasicData = ({ onCompleteBasicData }) => {
       </h2>
       <form className="mt-12 w-full">
         <div className="mb-4 w-full">
-          <Input placeholder="Nombre de Usuario" />
+          <Input
+            value={username}
+            onChange={handleUsername}
+            placeholder="Nombre de Usuario"
+          />
         </div>
         <div className="mb-4 flex gap-3">
-          <Input placeholder="Nombre" />
-          <Input placeholder="Apellido" />
+          <Input
+            placeholder="Nombre"
+            value={firstname}
+            onChange={handleFirstname}
+          />
+          <Input
+            placeholder="Apellido"
+            value={lastname}
+            onChange={handleLastname}
+          />
         </div>
         <div className="mb-4 w-full">
-          <Input type="email" placeholder="Correo Electrónico" />
+          <Input
+            type="email"
+            placeholder="Correo Electrónico"
+            value={email}
+            onChange={handleEmail}
+          />
         </div>
         <div className="mb-4 w-full">
-          <Input type="password" placeholder="Contraseña" />
+          <Input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={handlePassword}
+          />
         </div>
         <div className="mb-4 w-full">
-          <Input type="password" placeholder="Repetir Contraseña" />
+          <Input
+            type="password"
+            placeholder="Repetir Contraseña"
+            value={validationPassword}
+            onChange={handleValidationPassword}
+          />
         </div>
         <div>
           <button

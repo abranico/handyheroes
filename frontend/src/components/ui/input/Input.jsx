@@ -1,8 +1,10 @@
-const Input = ({ type = "text", placeholder, icon }) => {
+const Input = ({ value = "", type = "text", placeholder, icon, onChange }) => {
   return (
     <div className="w-full relative">
       <input
+        value={value}
         type={type}
+        onChange={onChange}
         placeholder={placeholder}
         className={`appearance-none border border-gray-300 rounded w-full py-4 px-3 leading-tight focus:outline-none focus:border-gray-500  text-gray-700 ${
           type === "search" ? "pl-10" : ""

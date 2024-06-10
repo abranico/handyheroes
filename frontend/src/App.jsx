@@ -35,14 +35,6 @@ function App() {
       ),
     },
     {
-      path: "/logout",
-      element: (
-        <Protected>
-          <p>logout</p>
-        </Protected>
-      ),
-    },
-    {
       path: "*",
       element: <NotFound />,
     },
