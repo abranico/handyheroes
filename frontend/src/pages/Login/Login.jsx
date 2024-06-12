@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { handleLogin } = useContext(AuthenticationContext);
+  const { handleLogin, user } = useContext(AuthenticationContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  if (user) return <Navigate to="/services" replace />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ const Login = () => {
 
     if (login) return navigate("/services");
   };
+
   return (
     <div className="max-w-md mx-auto flex items-center flex-col justify-center h-screen">
       <header className="flex flex-col w-full">

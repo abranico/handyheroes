@@ -6,7 +6,10 @@ const Navbar = () => {
   const { handleLogout } = useContext(AuthenticationContext);
   return (
     <nav className="flex justify-between mx-14 items-center p-6 ">
-      <a className="flex items-center cursor-pointer">
+      <NavLink
+        to="/"
+        className="flex items-center cursor-pointer hover:opacity-60"
+      >
         <img
           src="logo.png"
           alt="HandyHeroes Logo"
@@ -15,13 +18,13 @@ const Navbar = () => {
         <span className="text-2xl font-bold text-blue-900 ml-2">
           HandyHeroes
         </span>
-      </a>
-      <ul className="flex">
+      </NavLink>
+      <ul className="flex items-center">
         <li>
           <NavLink
             to="/services"
             className={({ isActive }) =>
-              `flex items-center gap-2 justify-center py-2 w-40 px-4 hover:bg-black/10 transition-all ${
+              `flex items-center gap-2 justify-center py-2 w-40  px-4 hover:bg-black/10 transition-all ${
                 isActive ? "bg-black/10" : ""
               } `
             }
@@ -80,11 +83,7 @@ const Navbar = () => {
         <li>
           <button
             onClick={handleLogout}
-            className={({ isActive }) =>
-              `flex items-center gap-2 justify-center py-2 w-40 px-4 hover:bg-black/10 transition-all ${
-                isActive ? "bg-black/10" : ""
-              } `
-            }
+            className="flex items-center gap-2 justify-center py-2  px-4 hover:bg-black/10 transition-all"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

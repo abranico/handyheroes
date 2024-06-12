@@ -3,12 +3,12 @@ import { useContext, useState } from "react";
 import BasicData from "./components/basicData/BasicData";
 import ChooseRol from "./components/chooseRol/ChooseRol";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { handleRegister } = useContext(AuthenticationContext);
+  const { handleRegister, user } = useContext(AuthenticationContext);
   const [basicData, setBasicData] = useState(false);
 
   const [rol, setRol] = useState(null);
@@ -18,6 +18,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validationPassword, setValidationPassword] = useState("");
+
+  if (user) return <Navigate to="/services" replace />;
 
   const handleCompleteBasicData = () => {
     setBasicData(!basicData);

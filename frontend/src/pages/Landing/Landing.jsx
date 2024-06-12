@@ -1,53 +1,65 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { AuthenticationContext } from "../../context/authentication/authentication.context";
 
 const Landing = () => {
+  const { user } = useContext(AuthenticationContext);
+  if (user) return <Navigate to="/services" replace />;
   return (
-    <div className="h-screen flex flex-col">
-      <header className="flex justify-between mx-14 items-center p-6">
-        <div className="flex items-center">
+    <div className="flex flex-col h-screen ">
+      <header className="flex justify-between mx-14 items-center p-6 ">
+        <Link to="/" className="flex items-center hover:opacity-70">
           <img
             src="logo.png"
             alt="HandyHeroes Logo"
             className="w-8 rounded-full"
           />
           <h1 className="text-2xl font-bold text-blue-900 ml-2">HandyHeroes</h1>
-        </div>
-        <Link to="/login" className="bg-blue-500 text-white px-10 py-2 rounded-lg hover:bg-blue-600 font-bold">
+        </Link>
+        <Link
+          to="/login"
+          className="bg-blue-500 text-white px-10 py-2 rounded-lg hover:bg-blue-600 font-bold"
+        >
           Unirse
         </Link>
       </header>
 
-      <main className="flex items-start justify-center mx-14 p-6 mb-20 ">
+      <main className="flex items-start justify-center mx-14 mb-24 flex-1">
         <div className="w-full flex items-center justify-around">
-        <div className="flex flex-col gap-7">
-          <h2 className="text-4xl font-bold text-blue-900">
-            Uniendo Oficios y Hogares.
-          </h2>
-          <p className="text-gray-700 mt-4 max-w-lg">
-            Conectando a quienes necesitan ayuda en el hogar con expertos
-            dispuestos a brindarla: HandyHeroes, donde se encuentran la demanda
-            y la oferta de servicios domÃ©sticos.
-          </p>
-          <div className="mt-6">
-            <Link to="/login" className="bg-blue-500 text-white px-6 py-3 rounded-md mr-2 transition duration-300 hover:bg-blue-600 font-bold">
-              BUSCAR PROFESIONAL
-            </Link>
-            <Link to="/login" className="bg-purple-500 text-white px-6 py-3 rounded-md ml-2 transition duration-300 hover:bg-purple-600 font-bold">
-              OFRECER SERVICIO
-            </Link>
+          <div className="flex flex-col gap-7">
+            <h2 className="text-4xl font-bold text-blue-900">
+              Uniendo Oficios y Hogares.
+            </h2>
+            <p className="text-gray-700 mt-4 max-w-lg">
+              Conectando a quienes necesitan ayuda en el hogar con expertos
+              dispuestos a brindarla: HandyHeroes, donde se encuentran la
+              demanda y la oferta de servicios domésticos.
+            </p>
+            <div className="mt-6">
+              <Link
+                to="/login"
+                className="bg-blue-500 text-white px-6 py-3 rounded-md mr-2 transition duration-300 hover:bg-blue-600 font-bold"
+              >
+                BUSCAR PROFESIONAL
+              </Link>
+              <Link
+                to="/login"
+                className="bg-purple-500 text-white px-6 py-3 rounded-md ml-2 transition duration-300 hover:bg-purple-600 font-bold"
+              >
+                OFRECER SERVICIO
+              </Link>
+            </div>
+          </div>
+          <div className="mt-10">
+            <img
+              src="logo.png"
+              alt="Handy Illustration"
+              className="max-w-80 h-auto rounded-3xl"
+            />
           </div>
         </div>
-        <div className="mt-10">
-          <img
-            src="logo.png"
-            alt="Handy Illustration"
-            className="max-w-80 h-auto rounded-3xl"
-          />
-        </div>
-        </div>
       </main>
-
-      <footer className="bg-blue-900 text-white text-center py-10 h-full ">
+      <footer className="bg-blue-900 text-white text-center py-10  ">
         <div className="flex justify-center space-x-4">
           <a href="#">
             <svg
@@ -107,7 +119,7 @@ const Landing = () => {
         <p className="mt-4">&copy; Copyright 2024 - HandyHeroes</p>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;

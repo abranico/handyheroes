@@ -1,24 +1,29 @@
 import { createContext, useState } from "react";
 import initialUsers from "../../mocks/Users.json";
+
 export const AuthenticationContext = createContext();
 
+const USER = JSON.parse(localStorage.getItem("__user__"));
+
 export const AuthenticationContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
   const [users, setUsers] = useState(initialUsers);
+  const [user, setUser] = useState(USER);
 
   const handleLogin = (email, password) => {
-    const userExist = users.some(
+    const selectUser = users.find(
       (user) => user.email === email && user.password === password
     );
 
-    if (!userExist) return;
+    if (!selectUser) return;
 
-    setUser(users.filter((user) => user.email === email)[0]);
+    setUser(selectUser);
+    localStorage.setItem("__user__", JSON.stringify(selectUser));
     return true;
   };
 
   const handleLogout = () => {
     setUser(null);
+    localStorage.removeItem("__user__");
   };
 
   const handleRegister = (newUser) => {
