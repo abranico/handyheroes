@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Services, Landing, Login, Register } from "./pages";
+import { Services, Landing, Login, Register, Profile } from "./pages";
 import NotFound from "./routes/NotFound";
 import { AuthenticationContextProvider } from "./context/authentication/authentication.context";
 import Protected from "./routes/Protected";
@@ -30,7 +30,7 @@ function App() {
       path: "/profile",
       element: (
         <Protected>
-          <p>profile</p>
+          <Profile />
         </Protected>
       ),
     },
