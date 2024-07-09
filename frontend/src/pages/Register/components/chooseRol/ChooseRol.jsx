@@ -1,6 +1,12 @@
-const ChooseRol = ({ onCompleteBasicData, onSetRol, rol, handleSubmit }) => {
+const ChooseRol = ({
+  onCompleteBasicData,
+  onSetRol,
+  rol,
+  handleSubmit,
+  error,
+}) => {
   return (
-    <main className="mt-6 max-w-xl mx-auto  ">
+    <main className="mt-6 max-w-xl mx-auto  pb-11">
       <h2 className="font-bold text-3xl text-gray-600 text-center ">
         Selecciona tu Rol en HandyHeroes
       </h2>
@@ -9,10 +15,15 @@ const ChooseRol = ({ onCompleteBasicData, onSetRol, rol, handleSubmit }) => {
         profesional que ofrece tus habilidades. Selecciona tu rol para
         personalizar tu experiencia en HandyHeroes.
       </p>
+      {error && (
+        <p className="text-red-400 text-center mt-5 font-bold">
+          Debes seleccionar un rol
+        </p>
+      )}
       <div className="mt-12 flex justify-between w-full">
         <button
           onClick={() => onSetRol("client")}
-          className={`flex flex-col items-center hover:opacity-60 ${
+          className={`flex flex-col items-center hover:opacity-60 p-2 ${
             rol === "client" ? "outline" : ""
           } `}
         >
@@ -25,7 +36,7 @@ const ChooseRol = ({ onCompleteBasicData, onSetRol, rol, handleSubmit }) => {
         </button>
         <button
           onClick={() => onSetRol("professional")}
-          className={`flex flex-col items-center cursor-pointer hover:opacity-60 ${
+          className={`flex flex-col items-center cursor-pointer hover:opacity-60 p-2 ${
             rol === "professional" ? "outline" : ""
           } `}
         >

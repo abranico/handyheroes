@@ -6,6 +6,16 @@ import { Link } from "react-router-dom";
 import { useNavigate, Navigate } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
 
+const initialErrors = {
+  username: false,
+  firstname: false,
+  lastname: false,
+  email: false,
+  password: false,
+  validationPassword: false,
+  rol: false,
+};
+
 const Register = () => {
   const navigate = useNavigate();
   const { handleRegister, user } = useContext(AuthenticationContext);
@@ -19,6 +29,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [validationPassword, setValidationPassword] = useState("");
 
+  const [error, setError] = useState(initialErrors);
+
   if (user) return <Navigate to="/services" replace />;
 
   const handleCompleteBasicData = () => {
@@ -30,14 +42,58 @@ const Register = () => {
     setRol($rol);
   };
 
+  const handleErrors = () => {
+    const newErrors = { ...initialErrors }; // Copia de initialErrors para resetear
+
+    if (username.trim().length < 5) {
+      newErrors.username = true;
+    }
+
+    if (firstname.trim().length < 5) {
+      newErrors.firstname = true;
+    }
+
+    if (lastname.trim().length < 5) {
+      newErrors.lastname = true;
+    }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase())) {
+      newErrors.email = true;
+    }
+
+    if (password.trim().length < 8) {
+      newErrors.password = true;
+    }
+
+    if (validationPassword !== password) {
+      newErrors.validationPassword = true;
+    }
+
+    setError(newErrors); // Actualiza el estado de errores con los nuevos errores calculados
+
+    // Devuelve true si hay algún error, false si no hay errores
+    return Object.values(newErrors).some((error) => error);
+  };
+
   const handleSubmit = () => {
+    const hasErrors = handleErrors();
+    if (hasErrors) return;
+
+    if (rol === null) {
+      setError((prevError) => ({ ...prevError, rol: true }));
+      console.log("Error");
+      return;
+    }
+    console.log("Con exito");
+
+    const role = rol === "professional" ? 0 : 1;
     const newUser = {
       username,
       firstname,
       lastname,
       email,
       password,
-      role: rol,
+      role,
     };
 
     const register = handleRegister(newUser);
@@ -90,6 +146,8 @@ const Register = () => {
             setValidationPassword(e.target.value)
           }
           onCompleteBasicData={handleCompleteBasicData}
+          errors={error}
+          handleErrors={handleErrors}
         />
       ) : (
         <ChooseRol
@@ -97,6 +155,7 @@ const Register = () => {
           onSetRol={handleSetRol}
           rol={rol}
           handleSubmit={handleSubmit}
+          error={error.rol}
         />
       )}
     </>
