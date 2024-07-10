@@ -12,15 +12,17 @@
     "city": "Rosario",
     "description": "Tengo más de 15 años de experiencia en albañilería. Me especializo en todo tipo de trabajos, desde pequeñas reparaciones hasta grandes remodelaciones. Estoy comprometido con la calidad y la satisfacción del cliente.",
     "phoneNumber": "+1 (555) 555-5555",
-    "services": ["Albañil"]
+    "services": "Albañil"
   },
 
   {
+    "id": 2,
     "username": "janesmith",
     "firstname": "Jane",
     "lastname": "Smith",
     "email": "janesmith@example.com",
     "password": "password123",
+    "profileImg": null,
     "role": "client"
   },
   {

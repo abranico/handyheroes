@@ -1,12 +1,13 @@
 import { createContext, useState } from "react";
-import initialUsers from "../../mocks/Users.json";
-
+// import initialUsers from "../../mocks/Users.json";
+import useUsers from "../../hooks/useUsers";
 export const AuthenticationContext = createContext();
 
 const USER = JSON.parse(localStorage.getItem("__user__"));
 
 export const AuthenticationContextProvider = ({ children }) => {
-  const [users, setUsers] = useState(initialUsers);
+  const { users, addUser, loading } = useUsers();
+
   const [user, setUser] = useState(USER);
 
   const handleLogin = (email, password) => {
@@ -27,16 +28,16 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
 
   const handleRegister = (newUser) => {
-    setUsers(users.concat(newUser));
+    addUser(newUser);
     setUser(newUser);
     return true;
   };
 
   return (
     <AuthenticationContext.Provider
-      value={{ user, handleLogin, handleLogout, handleRegister }}
+      value={{ users, user, handleLogin, handleLogout, handleRegister }}
     >
-      {children}
+      {!loading && children}
     </AuthenticationContext.Provider>
   );
 };

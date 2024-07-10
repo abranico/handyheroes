@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
 
 const Navbar = () => {
-  const { handleLogout } = useContext(AuthenticationContext);
+  const { user, handleLogout } = useContext(AuthenticationContext);
   return (
     <nav className="flex justify-between mx-14 items-center p-6 ">
       <NavLink
@@ -11,7 +11,7 @@ const Navbar = () => {
         className="flex items-center cursor-pointer hover:opacity-60"
       >
         <img
-          src="logo.png"
+          src="/logo.png"
           alt="HandyHeroes Logo"
           className="w-8 rounded-full"
         />
@@ -52,7 +52,7 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to="/profile"
+            to={`/user/${user.username}`}
             className={({ isActive }) =>
               `flex items-center gap-2 justify-center py-2 w-40 px-4  hover:bg-black/10 transition-all ${
                 isActive ? "bg-black/10" : ""

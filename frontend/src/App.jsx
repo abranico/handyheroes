@@ -3,6 +3,7 @@ import { Services, Landing, Login, Register, Profile } from "./pages";
 import NotFound from "./routes/NotFound";
 import { AuthenticationContextProvider } from "./context/authentication/authentication.context";
 import Protected from "./routes/Protected";
+import { ReviewsContextProvider } from "./context/reviews/reviews.context";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,7 +28,7 @@ function App() {
       ),
     },
     {
-      path: "/profile",
+      path: "/user/:username",
       element: (
         <Protected>
           <Profile />
@@ -43,7 +44,9 @@ function App() {
   return (
     <>
       <AuthenticationContextProvider>
-        <RouterProvider router={router} />
+        <ReviewsContextProvider>
+          <RouterProvider router={router} />
+        </ReviewsContextProvider>
       </AuthenticationContextProvider>
     </>
   );
