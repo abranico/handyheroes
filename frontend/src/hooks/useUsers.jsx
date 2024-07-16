@@ -1,34 +1,30 @@
-import { fetchAddUser, fetchAllUsers } from "../services/users";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { getAllUsers, getUserByUsername } from "../services/users";
 
 const useUsers = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    console.log("chauuuu");
+  const getAll = () => {
     setError(null);
-    setLoading(true);
-    fetchAllUsers()
-      .then((data) => setUsers(data))
-      .catch((e) => {
-        console.error(e.message);
-        setError({ error: e.message });
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  const addUser = (user) => {
-    setError(null);
-    setLoading(true);
-    fetchAddUser(user)
-      .then((newUser) => setUsers((prevUsers) => prevUsers.concat(newUser)))
+    getAllUsers()
+      .then((data) =>
+        setUsers(data.filter((user) => user.role === "professional"))
+      )
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   };
 
-  return { users, error, loading, addUser };
+  const getByUsername = (username) => {
+    setError(null);
+    getUserByUsername(username)
+      .then((newUser) => setUsers(newUser[0]))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  };
+
+  return { getByUsername, getAll, users, error, loading };
 };
 
 export default useUsers;

@@ -1,40 +1,35 @@
-const API_URL = "https://localhost:7011/api/Authentication/authenticate";
+const API_URL = "http://localhost:8000";
 
-export const authenticate = async (authenticationRequest) => {
+export const login = async (request) => {
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(authenticationRequest),
+      body: JSON.stringify(request),
     });
-    if (!response.ok) throw new Error("Error authenticate user");
-    const data = await response.text();
-    return decodeToken(data);
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    return data;
   } catch (error) {
-    throw new Error("Error authenticate user");
+    throw new Error("Error login user");
   }
 };
 
-const decodeToken = (token) => {
+export const register = async (request) => {
   try {
-    const [, payloadBase64] = token.split(".");
-    const decodedPayload = base64UrlDecode(payloadBase64);
-    return JSON.parse(decodedPayload);
+    const response = await fetch(`${API_URL}/register`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(request),
+    });
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error("Error decoding token:", error);
-    return null;
+    throw new Error("Error register user");
   }
-};
-
-const base64UrlDecode = (str) => {
-  // Decodes base64 URL-encoded string
-  const base64 = str.replace(/-/g, "+").replace(/_/g, "/");
-  return decodeURIComponent(
-    atob(base64)
-      .split("")
-      .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-      .join("")
-  );
 };

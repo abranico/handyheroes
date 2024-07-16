@@ -1,9 +1,16 @@
-const API_URL = "https://localhost:7011/api/User";
+const API_URL = "http://localhost:8000/users";
+const TOKEN = JSON.parse(localStorage.getItem("__user__"))?.accessToken;
 
-export const fetchAllUsers = async () => {
+export const getAllUsers = async () => {
   try {
-    const response = await fetch(API_URL);
-    if (!response.ok) throw new Error("Failed to fetch users");
+    const response = await fetch(API_URL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
+    if (!response.ok) throw new Error();
     const data = await response.json();
     return data;
   } catch (e) {
@@ -11,18 +18,19 @@ export const fetchAllUsers = async () => {
   }
 };
 
-export const fetchAddUser = async (user) => {
+export const getUserByUsername = async (username) => {
   try {
-    const response = await fetch(API_URL, {
-      method: "POST",
+    const response = await fetch(`${API_URL}?username=${username}`, {
+      method: "GET",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
       },
-      body: JSON.stringify(user),
     });
-    if (!response.ok) throw new Error("Error adding user");
-    return await response.json();
-  } catch (error) {
-    throw new Error("Error adding user");
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    throw new Error("Failed to fetch users");
   }
 };

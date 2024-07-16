@@ -7,7 +7,7 @@ import { ReviewsContext } from "../../../../context/reviews/reviews.context";
 const Review = ({ id, userId, content, rating, author }) => {
   const { deleteReview } = useContext(ReviewsContext);
   const { user, users } = useContext(AuthenticationContext);
-  const { firstname, lastname, profileImg, username } = users.find(
+  const { firstName, lastName, profileImg, username } = users.find(
     (user) => user.id === userId
   );
 
@@ -24,11 +24,11 @@ const Review = ({ id, userId, content, rating, author }) => {
             <img
               className="rounded-full max-w-7 max-h-7"
               src={profileImg || "/placeholder-user.jpg"}
-              alt={firstname}
+              alt={firstName}
             />
 
             <span>
-              {firstname} {lastname}
+              {firstName} {lastName}
             </span>
           </Link>
         </div>

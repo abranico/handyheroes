@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  fetchAllReviews,
+  getAllReviews,
   fetchAddReview,
   fetchDeleteReview,
 } from "../services/reviews";
@@ -11,10 +11,9 @@ const useReviews = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log("holaaaaaaa");
     setError(null);
     setLoading(true);
-    fetchAllReviews()
+    getAllReviews()
       .then((data) => setReviews(data))
       .catch((e) => {
         console.error(e.message);

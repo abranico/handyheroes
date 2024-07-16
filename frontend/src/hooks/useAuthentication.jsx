@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react";
-import { authenticate } from "../services/authentication";
+import { useState } from "react";
+import { login } from "../services/authentication";
 
 const useAuthentication = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("__user__");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("__user__");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  const handleAuthenticate = (authenticationRequest) => {
+  const handleAuthenticate = (request) => {
     setError(null);
     setLoading(true);
-    authenticate(authenticationRequest)
+    login(request)
       .then((newUser) => {
         localStorage.setItem("__user__", JSON.stringify(newUser));
         setUser(newUser);

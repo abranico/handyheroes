@@ -33,14 +33,15 @@ const ClientProfile = ({ image, fullname, username, reviews }) => {
               <ul>
                 {reviews.length > 0 ? (
                   reviews.map((review) => (
-                    <Review
-                      key={review.id}
-                      id={review.id}
-                      userId={review.professionalId}
-                      author={review.clientId}
-                      content={review.content}
-                      rating={review.rating}
-                    />
+                    // <Review
+                    //   key={review.id}
+                    //   id={review.id}
+                    //   userId={review.professionalId}
+                    //   author={review.clientId}
+                    //   content={review.content}
+                    //   rating={review.rating}
+                    // />
+                    <p>asd</p>
                   ))
                 ) : (
                   <li className="flex items-center justify-center border h-36 text-gray-600 bg-black/5">

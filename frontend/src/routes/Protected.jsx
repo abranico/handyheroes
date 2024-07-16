@@ -4,7 +4,6 @@ import { AuthenticationContext } from "../context/authentication/authentication.
 import { Navbar } from "../components";
 const Protected = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
-
   if (!user) return <Navigate to="/" replace />;
   return (
     <>

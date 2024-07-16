@@ -1,9 +1,16 @@
-const API_URL = "https://localhost:7011/api/Review";
+const API_URL = "http://localhost:8000/reviews";
+const TOKEN = JSON.parse(localStorage.getItem("__user__"))?.accessToken;
 
-export const fetchAllReviews = async () => {
+export const getAllReviews = async () => {
   try {
-    const response = await fetch(API_URL);
-    if (!response.ok) throw new Error("Failed to fetch reviews");
+    const response = await fetch(API_URL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
+    if (!response.ok) throw new Error();
     const data = await response.json();
     return data;
   } catch (e) {

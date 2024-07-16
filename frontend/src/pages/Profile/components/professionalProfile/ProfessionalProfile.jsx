@@ -78,7 +78,7 @@ const ProfessionalProfile = ({
 
         <div className="flex  gap-5  -mt-16">
           <div className="max-w-[220px] w-full "></div>
-          <div className="pb-10">
+          <div className="pb-10 w-full">
             <section className="flex flex-col mb-5 gap-5 text-neutral-6">
               <p className="flex gap-3">
                 <div className="flex items-center">
@@ -108,7 +108,7 @@ const ProfessionalProfile = ({
                 {services}
               </span>
             </section>
-            <section className="border min-h-32 p-3 shadow-sm rounded-md">
+            <section className="border min-h-32 max-h-72 overflow-auto w-full p-3 shadow-sm rounded-md">
               <p className="text-md ">{description}</p>
             </section>
             <section className="border flex gap-10  p-3 mt-5 min-h-20 shadow-sm rounded-md">
@@ -123,7 +123,7 @@ const ProfessionalProfile = ({
             </section>
             <section className="mt-5">
               <ul>
-                {reviews.length > 0 ? (
+                {/* {reviews.length > 0 ? (
                   reviews.map((review) => (
                     <Review
                       key={review.id}
@@ -138,7 +138,7 @@ const ProfessionalProfile = ({
                   <li className="flex items-center justify-center border h-36 text-gray-600 bg-black/5">
                     No hay reseñas
                   </li>
-                )}
+                )} */}
               </ul>
             </section>
           </div>
