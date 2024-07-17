@@ -8,7 +8,7 @@ import {
 import clsx from "clsx";
 import { useState } from "react";
 
-const Select = ({ options, placeholder, icon }) => {
+const Select = ({ options, placeholder, icon, setFilters }) => {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState("");
 
@@ -16,14 +16,20 @@ const Select = ({ options, placeholder, icon }) => {
     query === ""
       ? options
       : options.filter((option) => {
-          return option.name.toLowerCase().includes(query.toLowerCase());
+          return option.toLowerCase().includes(query.toLowerCase());
         });
 
   return (
     <div className="w-full relative">
       <Combobox
         value={selected}
-        onChange={(value) => setSelected(value)}
+        onChange={(value) => {
+          setSelected(value);
+          setFilters((prevState) => ({
+            ...prevState,
+            service: value,
+          }));
+        }}
         onClose={() => setQuery("")}
       >
         <div className="relative">
@@ -32,7 +38,7 @@ const Select = ({ options, placeholder, icon }) => {
               "w-full appearance-none border border-gray-300 rounded py-4 px-3 text-sm text-gray-700",
               `focus:outline-none focus:border-gray-500 ${icon ? "pl-10" : ""}`
             )}
-            displayValue={(option) => option?.name}
+            displayValue={(option) => option}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={placeholder}
           />
@@ -63,12 +69,12 @@ const Select = ({ options, placeholder, icon }) => {
         <ComboboxOptions
           className={clsx(
             "absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto",
-            "focus:outline-none"
+            "focus:outline-none text-black"
           )}
         >
-          {filteredOptions.map((option) => (
+          {filteredOptions.map((option, index) => (
             <ComboboxOption
-              key={option.id}
+              key={index}
               value={option}
               className={({ active }) =>
                 clsx(
@@ -85,7 +91,7 @@ const Select = ({ options, placeholder, icon }) => {
                       selected ? "font-medium" : "font-normal"
                     )}
                   >
-                    {option.name}
+                    {option}
                   </span>
                   {selected && (
                     <span

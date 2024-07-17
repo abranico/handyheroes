@@ -2,7 +2,16 @@ import { useContext } from "react";
 import { ReviewsContext } from "../../../../context/reviews/reviews.context";
 import { Link } from "react-router-dom";
 
-const User = ({ id, username, img, name, description, service }) => {
+const User = ({
+  id,
+  username,
+  img,
+  name,
+  description,
+  service,
+  country,
+  city,
+}) => {
   const { reviews } = useContext(ReviewsContext);
   const reviewsMade = reviews.filter((review) => review.professionalId === id);
 
@@ -21,32 +30,41 @@ const User = ({ id, username, img, name, description, service }) => {
   return (
     <Link
       to={`/user/${username}`}
-      className="max-h-[220px] h-full rounded-lg border  shadow transition hover:shadow-lg flex my-5 text-white bg-blue-700/80 hover:scale-105   "
+      className="max-h-[240px] h-full w-full max-w-[600px] rounded-lg border shadow transition hover:shadow-lg flex my-5 text-gray-800 bg-white hover:scale-105"
     >
-      <div className="p-5  max-w-[220px] w-full overflow-hidden  border-white">
+      <div className="w-[240px] h-full overflow-hidden rounded-l-lg">
         <img
           src={img || "/placeholder-user.jpg"}
-          className=" rounded-md w-full h-full object-center object-cover"
+          alt={`${name}'s profile`}
+          className="w-full h-full object-cover"
         />
       </div>
-      <div className="flex flex-col p-3 ">
-        <a href="#" className="mt-3 overflow-hidden text-2xl font-semibold">
-          {name}
-        </a>
-        <p className="overflow-hidden text-md my-auto line-clamp-3 ">
-          {description}
-        </p>
-
-        <div className="flex mt-auto mb-5  justify-between items-center">
-          <p className="text-2xl font-semibold ">{service}</p>
-          <span className="mr-10 font-semibold flex gap-4 items-center text-neutral-300">
-            {totalReviews} Reseña{totalReviews > 1 && "s"}
+      <div className="flex flex-col p-5 justify-between w-full">
+        <div className="flex flex-col">
+          <span className="text-2xl font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap max-h-16">
+            {name}
+          </span>
+          <p className="text-md mt-2 overflow-hidden text-gray-600 line-clamp-3 ">
+            {description}
+          </p>
+        </div>
+        <div className="flex flex-col justify-between  mt-4 gap-1">
+          <p className="text-xl overflow-ellipsis whitespace-nowrap overflow-hidden max-w-72">
+            {service}
+          </p>
+          <p className="text-sm text-gray-500 overflow-ellipsis whitespace-nowrap overflow-hidden max-w-72">
+            {country}, {city}
+          </p>
+          <div className="flex justify-between  gap-4 text-gray-500">
+            <span>
+              {totalReviews} Reseña{totalReviews > 1 && "s"}
+            </span>
             <span
-              className={averageRating >= 3 ? "text-green-400" : "text-red-400"}
+              className={averageRating >= 3 ? "text-green-500" : "text-red-500"}
             >
               {ratingMessage}
             </span>
-          </span>
+          </div>
         </div>
       </div>
     </Link>

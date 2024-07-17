@@ -50,7 +50,7 @@ const Navbar = () => {
             <span>Servicios</span>
           </NavLink>
         </li>
-        <li>
+        <li className="flex items-center">
           <NavLink
             to={`/user/${user.username}`}
             className={({ isActive }) =>
