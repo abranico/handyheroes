@@ -5,7 +5,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { handleLogin, user } = useContext(AuthenticationContext);
+  const { handleLogin, user, error } = useContext(AuthenticationContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,9 +13,12 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const login = handleLogin(email, password);
-
-    if (login) return navigate("/services");
+    if (email.trim() == "" || password.trim() == "") return;
+    handleLogin(email, password);
+    if (user && user.status) return navigate("/services");
+    console.log(error);
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -63,6 +66,11 @@ const Login = () => {
             <button className="bg-blue-500 w-full text-white px-6 py-3 rounded-md mr-2 transition duration-300 hover:bg-blue-600 font-bold">
               CONTINUAR
             </button>
+            {error && (
+              <p className="text-red-400 mt-5 text-center">
+                Usuario o contraseña incorrecta
+              </p>
+            )}
           </div>
           <div>
             <Link

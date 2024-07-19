@@ -7,7 +7,7 @@ const useAuthentication = () => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleAuthenticate = (request) => {
     setError(null);
@@ -18,7 +18,7 @@ const useAuthentication = () => {
         setUser(newUser);
       })
       .catch((error) => {
-        setError(error);
+        setError(error.message);
       })
       .finally(() => setLoading(false));
   };

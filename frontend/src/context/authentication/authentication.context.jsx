@@ -23,8 +23,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 
   const handleLogin = (email, password) => {
     handleAuthenticate({ email, password });
-    console.log({ loginerror: error });
-    return true;
+    if (error) console.log({ asdafsdf: error });
   };
 
   const handleLogout = () => {
@@ -52,9 +51,10 @@ export const AuthenticationContextProvider = ({ children }) => {
         handleRegister,
         getByUsername,
         handleUpdate,
+        error,
       }}
     >
-      {children}
+      {!loadingAuthentication && children}
     </AuthenticationContext.Provider>
   );
 };
