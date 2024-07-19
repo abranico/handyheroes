@@ -77,7 +77,7 @@ const User = ({
       {toggleReviews && (
         <tr className="text-white ">
           <td colSpan="5" className="bg-violet-400 h-28">
-            <ListOfReviews />
+            <ListOfReviews role={role} id={id} />
           </td>
         </tr>
       )}

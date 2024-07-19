@@ -1,6 +1,6 @@
 import { StarIcon } from "../../../../components/ui/icons";
 
-const Review = () => {
+const Review = ({ id, img, firstName, lastName, rating, content }) => {
   return (
     <li className="flex flex-col gap-4 border shadow-md bg-gray-100 rounded-md p-4 text-gray-700">
       <header className="flex justify justify-between">
@@ -8,15 +8,17 @@ const Review = () => {
           <div className="flex items-center gap-2 hover:opacity-60">
             <img
               className="rounded-full max-w-7 max-h-7"
-              src="/placeholder-user.jpg"
+              src={img || "/placeholder-user.jpg"}
             />
 
-            <span>asdasd asdasdasd</span>
+            <span>
+              {firstName} {lastName}
+            </span>
           </div>
         </div>
         <div className="flex p-1 gap-1 text-orange-300">
           {[...new Array(5)].map((star, index) =>
-            index < 3 ? (
+            index < rating ? (
               <StarIcon key={index} />
             ) : (
               <StarIcon key={index} fill={true} />
@@ -25,12 +27,7 @@ const Review = () => {
         </div>
       </header>
 
-      <p className="text-gray-600">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium
-        repudiandae perferendis aut commodi distinctio harum, enim eaque sunt
-        quisquam recusandae illum unde blanditiis, pariatur totam quam eum illo
-        nemo quo!
-      </p>
+      <p className="text-gray-600">{content}</p>
 
       <footer className="flex justify-between">
         <span>Feb 13, 2021</span>
