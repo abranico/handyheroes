@@ -52,3 +52,21 @@ export const userPartialUpdate = async (id, partialData) => {
     throw new Error("Failed to fetch users");
   }
 };
+
+export const createUser = async (newUser) => {
+  try {
+    const response = await fetch(`${API_URL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      body: JSON.stringify(newUser),
+    });
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    throw new Error("Failed to add user");
+  }
+};

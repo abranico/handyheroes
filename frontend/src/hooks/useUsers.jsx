@@ -3,6 +3,7 @@ import {
   getAllUsers,
   getUserByUsername,
   userPartialUpdate,
+  createUser,
 } from "../services/users";
 
 const useUsers = () => {
@@ -43,7 +44,18 @@ const useUsers = () => {
       .finally(() => setLoading(false));
   };
 
-  return { getByUsername, partialUpdate, users, error, loading };
+  const addUser = (newUser) => {
+    setLoading(true);
+    setError(null);
+    createUser(newUser)
+      .then((user) => {
+        setUsers((prevUsers) => prevUsers.concat(user));
+      })
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  };
+
+  return { getByUsername, partialUpdate, addUser, users, error, loading };
 };
 
 export default useUsers;
