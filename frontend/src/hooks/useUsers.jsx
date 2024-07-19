@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { getAllUsers, getUserByUsername } from "../services/users";
+import {
+  getAllUsers,
+  getUserByUsername,
+  userPartialUpdate,
+} from "../services/users";
 
 const useUsers = () => {
   const [users, setUsers] = useState([]);
@@ -7,6 +11,7 @@ const useUsers = () => {
   const [loading, setLoading] = useState(true);
 
   const getAll = () => {
+    setLoading(true);
     setError(null);
     getAllUsers()
       .then((data) => setUsers(data))
@@ -15,6 +20,7 @@ const useUsers = () => {
   };
 
   const getByUsername = (username) => {
+    setLoading(true);
     setError(null);
     getUserByUsername(username)
       .then((newUser) => setUsers(newUser[0]))
@@ -22,7 +28,22 @@ const useUsers = () => {
       .finally(() => setLoading(false));
   };
 
-  return { getByUsername, getAll, users, error, loading };
+  const partialUpdate = (id, partialData) => {
+    setLoading(true);
+    setError(null);
+    userPartialUpdate(id, partialData)
+      .then((updatedUser) => {
+        setUsers((prevUsers) =>
+          prevUsers.map((user) => {
+            return user.id === id ? { ...user, ...updatedUser } : user;
+          })
+        );
+      })
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  };
+
+  return { getByUsername, getAll, partialUpdate, users, error, loading };
 };
 
 export default useUsers;

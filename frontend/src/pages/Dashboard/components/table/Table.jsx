@@ -3,7 +3,7 @@ import User from "../user/User";
 
 const Table = ({ users }) => {
   const [limitUsers, setLimitUsers] = useState(5);
-
+  console.log({ users: users });
   const handleSetLimitUsers = () => {
     setLimitUsers(limitUsers + 5);
   };
@@ -36,13 +36,15 @@ const Table = ({ users }) => {
           <tbody>
             {visibleUsers.map((user) => (
               <User
-                key={user.Id}
+                key={user.id}
+                id={user.id}
                 firstname={user.firstName}
                 lastname={user.lastName}
                 img={user.profileImg}
                 username={user.username}
                 email={user.email}
                 role={user.role}
+                status={user.status}
               />
             ))}
           </tbody>

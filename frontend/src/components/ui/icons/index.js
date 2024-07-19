@@ -3,4 +3,4 @@ export { default as PhoneIcon } from "./PhoneIcon";
 export { default as MapIcon } from "./MapIcon";
 export { default as EmailIcon } from "./EmailIcon";
 export { default as StarIcon } from "./StarIcon";
-export { default as DeleteIcon } from "./DeleteIcon";
+export { default as BlockIcon } from "./BlockIcon";

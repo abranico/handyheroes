@@ -17,6 +17,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     userProfile,
     loading: loadingUsers,
     getByUsername,
+    partialUpdate,
   } = useUsers();
 
   const handleLogin = (email, password) => {
@@ -26,6 +27,10 @@ export const AuthenticationContextProvider = ({ children }) => {
 
   const handleLogout = () => {
     logout();
+  };
+
+  const handleUpdate = (id, data) => {
+    partialUpdate(id, data);
   };
 
   const handleRegister = (newUser) => {
@@ -44,6 +49,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         handleLogout,
         handleRegister,
         getByUsername,
+        handleUpdate,
       }}
     >
       {children}

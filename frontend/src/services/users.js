@@ -34,3 +34,21 @@ export const getUserByUsername = async (username) => {
     throw new Error("Failed to fetch users");
   }
 };
+
+export const userPartialUpdate = async (id, partialData) => {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      body: JSON.stringify(partialData),
+    });
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    throw new Error("Failed to fetch users");
+  }
+};

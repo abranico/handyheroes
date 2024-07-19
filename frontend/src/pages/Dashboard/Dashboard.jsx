@@ -42,7 +42,10 @@ const Dashboard = () => {
               onChange={(e) => setFilter(e.target.value)}
             />
           </div>
-          <p>{filteredUsers.length} Usuarios encontrados</p>
+          <p>
+            <span className="font-bold">{filteredUsers.length}</span> Usuarios
+            encontrados
+          </p>
         </div>
         <Table users={filteredUsers} />
       </main>

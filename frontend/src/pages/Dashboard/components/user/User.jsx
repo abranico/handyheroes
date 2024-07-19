@@ -1,21 +1,38 @@
 import { Link } from "react-router-dom";
-import { DeleteIcon } from "../../../../components/ui/icons";
+import { BlockIcon } from "../../../../components/ui/icons";
 import ArrowRight from "../../../../components/ui/icons/ArrowRight";
 import ArrowDown from "../../../../components/ui/icons/ArrowDown";
 import EditIcon from "../../../../components/ui/icons/EditIcon";
 
 import ListOfReviews from "../listOfReviews/ListOfReviews";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import RestoreIcon from "../../../../components/ui/icons/RestoreIcon";
+import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
 
-const User = ({ firstname, lastname, img, username, email, role }) => {
+const User = ({
+  id,
+  firstname,
+  lastname,
+  img,
+  username,
+  email,
+  role,
+  status,
+}) => {
+  const { handleUpdate } = useContext(AuthenticationContext);
   const [toggleReviews, setToggleReviews] = useState(false);
 
   const handleToggleReviews = () => {
     setToggleReviews(!toggleReviews);
   };
 
+  const handleToggleStatus = () => {
+    handleUpdate(id, { status: !status });
+  };
+
   return (
     <>
+      {status ? <p>v</p> : <p>f</p>}
       <tr className="bg-white border-b">
         <th
           scope="row"
@@ -45,11 +62,12 @@ const User = ({ firstname, lastname, img, username, email, role }) => {
           <button className="hover:opacity-45">
             <EditIcon width={30} height={30} />
           </button>
-          <button className="hover:opacity-45">
-            <DeleteIcon width={30} height={30} />
+          <button className="hover:opacity-45" onClick={handleToggleStatus}>
+            {status ? <BlockIcon width={30} height={30} /> : <RestoreIcon />}
           </button>
         </td>
       </tr>
+
       {toggleReviews && (
         <tr className="text-white ">
           <td colSpan="5" className="bg-violet-400 h-28">
