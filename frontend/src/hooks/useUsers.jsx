@@ -9,9 +9,7 @@ const useUsers = () => {
   const getAll = () => {
     setError(null);
     getAllUsers()
-      .then((data) =>
-        setUsers(data.filter((user) => user.role === "professional"))
-      )
+      .then((data) => setUsers(data))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   };

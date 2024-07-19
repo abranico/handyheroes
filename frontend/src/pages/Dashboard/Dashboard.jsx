@@ -1,8 +1,16 @@
 import { Input } from "../../components";
 import { SearchIcon } from "../../components/ui/icons";
+import { useEffect } from "react";
+import useUsers from "../../hooks/useUsers";
 import Table from "./components/table/Table";
 
 const Dashboard = () => {
+  const { users, getAll } = useUsers();
+
+  useEffect(() => {
+    getAll();
+  }, []);
+
   return (
     <>
       <header className="px-6 py-11  text-white bg-gradient-to-r from-violet-500 to-violet-400 ">
@@ -18,9 +26,9 @@ const Dashboard = () => {
               placeholder="Buscar usuario"
             />
           </div>
-          <p>0 Usuarios encontrados</p>
+          <p>{users.length} Usuarios encontrados</p>
         </div>
-        <Table />
+        <Table users={users} />
       </main>
     </>
   );
