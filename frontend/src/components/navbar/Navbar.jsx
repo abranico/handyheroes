@@ -4,6 +4,7 @@ import { AuthenticationContext } from "../../context/authentication/authenticati
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(AuthenticationContext);
+
   return (
     <nav className="flex justify-between mx-14 items-center p-6 ">
       <NavLink
@@ -50,36 +51,68 @@ const Navbar = () => {
             <span>Servicios</span>
           </NavLink>
         </li>
-        <li className="flex items-center">
-          <NavLink
-            to={`/user/${user.username}`}
-            className={({ isActive }) =>
-              `flex items-center gap-2 justify-center py-2 w-40 px-4  hover:bg-black/10 transition-all ${
-                isActive ? "bg-black/10" : ""
-              } `
-            }
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-user-circle"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="#000000"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+        {user.role == "admin" ? (
+          <li>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                `flex items-center gap-2 justify-center py-2 w-40  px-4 hover:bg-black/10 transition-all ${
+                  isActive ? "bg-black/10" : ""
+                } `
+              }
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-              <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-              <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-home"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#000000"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+              </svg>
+              <span>Dashboard</span>
+            </NavLink>
+          </li>
+        ) : (
+          <li className="flex items-center">
+            <NavLink
+              to={`/user/${user.username}`}
+              className={({ isActive }) =>
+                `flex items-center gap-2 justify-center py-2 w-40 px-4  hover:bg-black/10 transition-all ${
+                  isActive ? "bg-black/10" : ""
+                } `
+              }
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-user-circle"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#000000"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
+              </svg>
 
-            <span>Perfil</span>
-          </NavLink>
-        </li>
+              <span>Perfil</span>
+            </NavLink>
+          </li>
+        )}
         <li>
           <button
             onClick={handleLogout}

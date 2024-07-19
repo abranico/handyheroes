@@ -1,5 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Services, Landing, Login, Register, Profile } from "./pages";
+import {
+  Services,
+  Landing,
+  Login,
+  Register,
+  Profile,
+  Dashboard,
+} from "./pages";
 import NotFound from "./routes/NotFound";
 import { AuthenticationContextProvider } from "./context/authentication/authentication.context";
 import Protected from "./routes/Protected";
@@ -24,6 +31,14 @@ function App() {
       element: (
         <Protected>
           <Services />
+        </Protected>
+      ),
+    },
+    {
+      path: "/dashboard",
+      element: (
+        <Protected>
+          <Dashboard />
         </Protected>
       ),
     },

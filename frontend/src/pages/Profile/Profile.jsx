@@ -26,7 +26,7 @@ const Profile = () => {
     <>
       {loading && <LoadingSpinner />}
       {!loading &&
-        (user.role === "professional" ? (
+        ((user.role === "professional" && (
           <ProfessionalProfile
             image={user.profileImg}
             fullname={fullname}
@@ -39,14 +39,15 @@ const Profile = () => {
             email={user.email}
             reviews={userReviews}
           />
-        ) : (
-          <ClientProfile
-            image={user.ProfileImg}
-            fullname={fullname}
-            username={user.username}
-            reviews={userReviews}
-          />
-        ))}
+        )) ||
+          (user.role === "client" && (
+            <ClientProfile
+              image={user.ProfileImg}
+              fullname={fullname}
+              username={user.username}
+              reviews={userReviews}
+            />
+          )))}
     </>
   );
 };
