@@ -14,7 +14,9 @@ const Dashboard = () => {
   return (
     <>
       <header className="px-6 py-11  text-white bg-gradient-to-r from-violet-500 to-violet-400 ">
-        <h1 className="mx-14 text-5xl font-bold py-5">Panel de control.</h1>
+        <h1 className="mx-14 text-5xl font-bold py-5 text-center">
+          Panel de control
+        </h1>
       </header>
 
       <main className="mx-14 px-6">
