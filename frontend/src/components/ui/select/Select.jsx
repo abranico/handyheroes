@@ -16,7 +16,7 @@ const Select = ({ options, placeholder, icon, setFilters }) => {
     query === ""
       ? options
       : options.filter((option) => {
-          return option.toLowerCase().includes(query.toLowerCase());
+          return option?.toLowerCase().includes(query.toLowerCase());
         });
 
   return (

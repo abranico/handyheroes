@@ -7,6 +7,7 @@ import {
 } from "../../../../components/ui/icons";
 import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
 import { Review } from "../../components";
+
 const ProfessionalProfile = ({
   image,
   fullname,
@@ -20,9 +21,11 @@ const ProfessionalProfile = ({
   reviews,
 }) => {
   const { user } = useContext(AuthenticationContext);
+  console.log(user);
   const isOwner = user.username === username;
+  console.log(isOwner);
   const [isEditing, setIsEditing] = useState(false);
-
+  console.log(reviews);
   const handleSaveEdit = () => {
     setIsEditing(false);
   };
@@ -82,20 +85,23 @@ const ProfessionalProfile = ({
             <section className="flex flex-col mb-5 gap-5 text-neutral-6">
               <p className="flex gap-3">
                 <div className="flex items-center">
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
+                  {[...new Array(5)].map((star, index) =>
+                    index < rating ? (
+                      <StarIcon key={index} />
+                    ) : (
+                      <StarIcon key={index} fill={true} />
+                    )
+                  )}
+
                   <span className="ms-2 text-sm font-bold text-gray-900 ">
                     {rating}
                   </span>
                   <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full "></span>
                   <a
-                    href="#"
+                    href="#reviews"
                     className="text-sm font-medium text-gray-900 underline hover:no-underline "
                   >
-                    73 reviews
+                    {reviews.length} reviews
                   </a>
                 </div>
               </p>
@@ -122,23 +128,25 @@ const ProfessionalProfile = ({
               </p>
             </section>
             <section className="mt-5">
-              <ul>
-                {/* {reviews.length > 0 ? (
+              <ul id="reviews" className="flex flex-col gap-3">
+                {reviews.length > 0 ? (
                   reviews.map((review) => (
                     <Review
                       key={review.id}
                       id={review.id}
-                      userId={review.clientId}
                       content={review.content}
                       rating={review.rating}
-                      author={review.clientId}
+                      client={review.client.username}
+                      img={review.client.profileImg}
+                      firstName={review.client.firstName}
+                      lastName={review.client.lastName}
                     />
                   ))
                 ) : (
                   <li className="flex items-center justify-center border h-36 text-gray-600 bg-black/5">
                     No hay reseñas
                   </li>
-                )} */}
+                )}
               </ul>
             </section>
           </div>

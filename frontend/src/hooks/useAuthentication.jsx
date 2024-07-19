@@ -7,17 +7,19 @@ const useAuthentication = () => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleAuthenticate = (request) => {
     setError(null);
     setLoading(true);
-    login(request)
+    return login(request)
       .then((newUser) => {
         localStorage.setItem("__user__", JSON.stringify(newUser));
         setUser(newUser);
       })
-      .catch((error) => setError(error))
+      .catch((error) => {
+        setError(error);
+      })
       .finally(() => setLoading(false));
   };
 

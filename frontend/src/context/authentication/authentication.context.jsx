@@ -10,6 +10,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     handleAuthenticate,
     loading: loadingAuthentication,
     logout,
+    error,
   } = useAuthentication();
 
   const {
@@ -22,6 +23,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 
   const handleLogin = (email, password) => {
     handleAuthenticate({ email, password });
+    console.log({ loginerror: error });
     return true;
   };
 

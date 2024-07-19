@@ -13,7 +13,7 @@ const User = ({
   city,
 }) => {
   const { reviews } = useContext(ReviewsContext);
-  const reviewsMade = reviews.filter((review) => review.professionalId === id);
+  const reviewsMade = reviews.filter((review) => review.professional.id === id);
 
   const totalReviews = reviewsMade.length;
   const sumRatings = reviewsMade.reduce(

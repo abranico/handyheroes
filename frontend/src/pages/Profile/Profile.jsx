@@ -15,12 +15,17 @@ const Profile = () => {
   }, [username]);
 
   const fullname = user.firstName + " " + user.lastName;
-  const rating = 4.95;
+
   const location = user.country + ", " + user.city;
+
   const userReviews =
     user.role === "professional"
-      ? reviews.filter((review) => review.professionalId == user.id)
-      : reviews.filter((review) => review.clientId == user.id);
+      ? reviews.filter((review) => review.professional.id == user.id)
+      : reviews.filter((review) => review.client.id == user.id);
+
+  const rating =
+    userReviews.reduce((acc, review) => acc + review.rating, 0) /
+    userReviews.length;
 
   return (
     <>
@@ -30,7 +35,7 @@ const Profile = () => {
           <ProfessionalProfile
             image={user.profileImg}
             fullname={fullname}
-            username={user.username}
+            username={username}
             rating={rating}
             services={user.services}
             location={location}
@@ -44,7 +49,7 @@ const Profile = () => {
             <ClientProfile
               image={user.ProfileImg}
               fullname={fullname}
-              username={user.username}
+              username={username}
               reviews={userReviews}
             />
           )))}

@@ -4,26 +4,23 @@ import { AuthenticationContext } from "../../../../context/authentication/authen
 import { Link } from "react-router-dom";
 import { ReviewsContext } from "../../../../context/reviews/reviews.context";
 
-const Review = ({ id, userId, content, rating, author }) => {
+const Review = ({ id, content, rating, client, img, firstName, lastName }) => {
   const { deleteReview } = useContext(ReviewsContext);
-  const { user, users } = useContext(AuthenticationContext);
-  const { firstName, lastName, profileImg, username } = users.find(
-    (user) => user.id === userId
-  );
+  const { user } = useContext(AuthenticationContext);
 
-  const isOwner = user.id === author;
+  const isOwner = user.id === client;
 
   return (
     <li className="flex flex-col gap-4 border shadow-md bg-neutral-100 rounded-md p-4 w-full">
       <header className="flex justify justify-between">
         <div className="flex gap-2">
           <Link
-            to={`/user/${username}`}
+            to={`/user/${client}`}
             className="flex items-center gap-2 hover:opacity-60"
           >
             <img
               className="rounded-full max-w-7 max-h-7"
-              src={profileImg || "/placeholder-user.jpg"}
+              src={img || "/placeholder-user.jpg"}
               alt={firstName}
             />
 
