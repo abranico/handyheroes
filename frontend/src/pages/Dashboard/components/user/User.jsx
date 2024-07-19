@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import RestoreIcon from "../../../../components/ui/icons/RestoreIcon";
 import { UsersContext } from "../../../../context/users/users.context";
 import ListOfReviews from "../listOfReviews/ListOfReviews";
+import EditUser from "../editUser/EditUser";
 
 const User = ({
   id,
@@ -21,6 +22,7 @@ const User = ({
 }) => {
   const { handleUpdate } = useContext(UsersContext);
   const [toggleReviews, setToggleReviews] = useState(false);
+  const [toggleEditUser, setToggleEditUser] = useState(false);
 
   const handleToggleReviews = () => {
     setToggleReviews(!toggleReviews);
@@ -30,8 +32,13 @@ const User = ({
     handleUpdate(id, { status: !status });
   };
 
+  const handleToggleEditUser = () => {
+    setToggleEditUser(!toggleEditUser);
+  };
+
   return (
     <>
+      {toggleEditUser && <EditUser id={id} toggle={handleToggleEditUser} />}
       <tr className="bg-white border-b">
         <th
           scope="row"
@@ -58,7 +65,7 @@ const User = ({
           >
             {toggleReviews ? <ArrowDown /> : <ArrowRight />}
           </button>
-          <button className="hover:opacity-45">
+          <button onClick={handleToggleEditUser} className="hover:opacity-45">
             <EditIcon width={30} height={30} />
           </button>
           <button className="hover:opacity-45" onClick={handleToggleStatus}>

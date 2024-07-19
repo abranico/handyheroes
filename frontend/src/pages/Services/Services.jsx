@@ -18,15 +18,13 @@ const Services = () => {
       user.description &&
       user.city &&
       user.country &&
-      user.services &&
+      user.service &&
       user.status
   );
 
   const filteredProfessionals = professionals.filter((prof) => {
     const matchesService = filters.service
-      ? prof.services.some((service) =>
-          service.toLowerCase().includes(filters.service.toLowerCase())
-        )
+      ? prof.service.toLowerCase() == filters.service.toLowerCase()
       : true;
 
     const matchesProfessional = filters.professional
@@ -43,7 +41,9 @@ const Services = () => {
     return matchesService && matchesProfessional && matchesLocation;
   });
 
-  const services = [...new Set(users.flatMap((user) => user.services))];
+  const services = [...new Set(professionals.map((user) => user.service))];
+
+  console.log(services);
 
   return (
     <>
@@ -99,7 +99,7 @@ const Services = () => {
                 img={user.profileImg}
                 name={user.firstName + " " + user.lastName}
                 description={user.description}
-                service={user.services}
+                service={user.service}
                 country={user.country}
                 city={user.city}
               />

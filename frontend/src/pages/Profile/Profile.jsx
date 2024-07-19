@@ -37,7 +37,7 @@ const Profile = () => {
             fullname={fullname}
             username={username}
             rating={rating}
-            services={user.services}
+            service={user.service}
             location={location}
             description={user.description}
             number={user.phoneNumber}

@@ -25,8 +25,6 @@ const User = ({
   const ratingMessage =
     averageRating >= 3 ? "Mayormente positivas" : "Mayormente negativas";
 
-  console.log(reviewsMade);
-
   return (
     <Link
       to={`/user/${username}`}

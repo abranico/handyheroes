@@ -13,7 +13,7 @@ const ProfessionalProfile = ({
   fullname,
   username,
   rating,
-  services,
+  service,
   location,
   description,
   number,
@@ -111,7 +111,7 @@ const ProfessionalProfile = ({
                 {location}
               </p>
               <span className="text-2xl p-3 text-neutral-800 border rounded-md shadow-sm">
-                {services}
+                {service}
               </span>
             </section>
             <section className="border min-h-32 max-h-72 overflow-auto w-full p-3 shadow-sm rounded-md">
