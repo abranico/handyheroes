@@ -28,7 +28,7 @@ const Profile = () => {
       {!loading &&
         (user.role === "professional" ? (
           <ProfessionalProfile
-            image={user.ProfileImg}
+            image={user.profileImg}
             fullname={fullname}
             username={user.username}
             rating={rating}

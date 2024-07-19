@@ -32,7 +32,7 @@ const ProfessionalProfile = ({
       <div className="h-[180px] text-white bg-gradient-to-r from-cyan-600 to-blue-600"></div>
       <main className="px-5 py-2 flex flex-col gap-3 pb-6 max-w-4xl mx-auto ">
         <header className=" flex items-center gap-5 ">
-          <div className="h-[220px] shadow-md max-w-[220px] w-full rounded-full border-4 overflow-hidden -mt-16 border-white">
+          <div className="h-[220px] shadow-md max-w-[220px] w-full rounded-full border-4 overflow-hidden -mt-16 border-white bg-white">
             <img
               src={image || "/placeholder-user.jpg"}
               className="w-full h-full rounded-full object-center object-cover"
