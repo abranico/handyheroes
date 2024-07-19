@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { BlockIcon } from "../../../../components/ui/icons";
-import ArrowRight from "../../../../components/ui/icons/ArrowRight";
 import ArrowDown from "../../../../components/ui/icons/ArrowDown";
+import ArrowRight from "../../../../components/ui/icons/ArrowRight";
 import EditIcon from "../../../../components/ui/icons/EditIcon";
 
-import ListOfReviews from "../listOfReviews/ListOfReviews";
 import { useContext, useState } from "react";
 import RestoreIcon from "../../../../components/ui/icons/RestoreIcon";
-import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
+import { UsersContext } from "../../../../context/users/users.context";
+import ListOfReviews from "../listOfReviews/ListOfReviews";
 
 const User = ({
   id,
@@ -19,7 +19,7 @@ const User = ({
   role,
   status,
 }) => {
-  const { handleUpdate } = useContext(AuthenticationContext);
+  const { handleUpdate } = useContext(UsersContext);
   const [toggleReviews, setToggleReviews] = useState(false);
 
   const handleToggleReviews = () => {
@@ -32,7 +32,6 @@ const User = ({
 
   return (
     <>
-      {status ? <p>v</p> : <p>f</p>}
       <tr className="bg-white border-b">
         <th
           scope="row"

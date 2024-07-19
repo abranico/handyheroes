@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Input, Select } from "../../components";
 import { MapIcon, SearchIcon } from "../../components/ui/icons";
-import useUsers from "../../hooks/useUsers";
+import { UsersContext } from "../../context/users/users.context";
 import { User } from "./components";
 
 const Services = () => {
-  const { users, getAll } = useUsers();
+  const { users } = useContext(UsersContext);
+
   const [filters, setFilters] = useState({
     service: "",
     professional: "",
     location: "",
   });
-
-  useEffect(() => {
-    getAll();
-  }, []);
 
   const professionals = users.filter(
     (user) =>
@@ -45,7 +42,7 @@ const Services = () => {
 
     return matchesService && matchesProfessional && matchesLocation;
   });
-  console.log(filters);
+
   const services = [...new Set(users.flatMap((user) => user.services))];
 
   return (

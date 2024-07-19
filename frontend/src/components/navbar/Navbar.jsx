@@ -6,7 +6,7 @@ const Navbar = () => {
   const { user, handleLogout } = useContext(AuthenticationContext);
 
   return (
-    <nav className="flex justify-between mx-14 items-center p-6 ">
+    <nav className="flex justify-between mx-14 items-center p-6  ">
       <NavLink
         to="/"
         className="flex items-center cursor-pointer hover:opacity-60"

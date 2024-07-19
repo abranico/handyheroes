@@ -11,6 +11,7 @@ import NotFound from "./routes/NotFound";
 import { AuthenticationContextProvider } from "./context/authentication/authentication.context";
 import Protected from "./routes/Protected";
 import { ReviewsContextProvider } from "./context/reviews/reviews.context";
+import { UsersContextProvider } from "./context/users/users.context";
 
 function App() {
   const router = createBrowserRouter([
@@ -59,9 +60,11 @@ function App() {
   return (
     <>
       <AuthenticationContextProvider>
-        <ReviewsContextProvider>
-          <RouterProvider router={router} />
-        </ReviewsContextProvider>
+        <UsersContextProvider>
+          <ReviewsContextProvider>
+            <RouterProvider router={router} />
+          </ReviewsContextProvider>
+        </UsersContextProvider>
       </AuthenticationContextProvider>
     </>
   );

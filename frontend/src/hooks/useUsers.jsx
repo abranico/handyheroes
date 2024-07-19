@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   getAllUsers,
   getUserByUsername,
@@ -10,14 +10,14 @@ const useUsers = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const getAll = () => {
+  useEffect(() => {
     setLoading(true);
     setError(null);
     getAllUsers()
       .then((data) => setUsers(data))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
-  };
+  }, []);
 
   const getByUsername = (username) => {
     setLoading(true);
@@ -43,7 +43,7 @@ const useUsers = () => {
       .finally(() => setLoading(false));
   };
 
-  return { getByUsername, getAll, partialUpdate, users, error, loading };
+  return { getByUsername, partialUpdate, users, error, loading };
 };
 
 export default useUsers;

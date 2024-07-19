@@ -1,16 +1,13 @@
-import { Input } from "../../components";
+import { useContext, useState } from "react";
+import { Input, LoadingSpinner } from "../../components";
 import { SearchIcon } from "../../components/ui/icons";
-import { useEffect, useState } from "react";
-import useUsers from "../../hooks/useUsers";
+import { UsersContext } from "../../context/users/users.context";
 import Table from "./components/table/Table";
 
 const Dashboard = () => {
   const [filter, setFilter] = useState("");
-  const { users, getAll } = useUsers();
 
-  useEffect(() => {
-    getAll();
-  }, []);
+  const { users, loading } = useContext(UsersContext);
 
   const filteredUsers = users.filter((user) => {
     if (filter === "") return true;
@@ -25,6 +22,7 @@ const Dashboard = () => {
 
   return (
     <>
+      {loading && <LoadingSpinner />}
       <header className="px-6 py-11  text-white bg-gradient-to-r from-violet-500 to-violet-400 ">
         <h1 className="mx-14 text-5xl font-bold py-5 text-center">
           Panel de control
