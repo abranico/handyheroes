@@ -10,7 +10,7 @@ const ClientProfile = ({ image, fullname, username, reviews }) => {
           <div className="h-[220px] shadow-md max-w-[220px] w-full rounded-full border-4 overflow-hidden -mt-16 border-white">
             <img
               src={image || "/placeholder-user.jpg"}
-              className="w-full h-full rounded-full object-center object-cover"
+              className="w-full h-full rounded-full object-center object-cover bg-white"
             />
           </div>
           <div className="-mt-10 flex justify-between w-full">
@@ -30,18 +30,22 @@ const ClientProfile = ({ image, fullname, username, reviews }) => {
               <h3 className="text-2xl text-slate-500 leading-6 font-medium mb-5">
                 Reseñas hechas
               </h3>
-              <ul>
+              <ul className="flex flex-col gap-3">
                 {reviews.length > 0 ? (
                   reviews.map((review) => (
-                    // <Review
-                    //   key={review.id}
-                    //   id={review.id}
-                    //   userId={review.professionalId}
-                    //   author={review.clientId}
-                    //   content={review.content}
-                    //   rating={review.rating}
-                    // />
-                    <p>asd</p>
+                    <Review
+                      key={review.id}
+                      id={review.id}
+                      userId={review.professional.id}
+                      author={review.client.id}
+                      content={review.content}
+                      rating={review.rating}
+                      img={review.professional.profileImg}
+                      firstName={review.professional.firstName}
+                      lastName={review.professional.lastName}
+                      client={review.professional.username}
+                      clientId={review.client.id}
+                    />
                   ))
                 ) : (
                   <li className="flex items-center justify-center border h-36 text-gray-600 bg-black/5">

@@ -136,6 +136,7 @@ const ProfessionalProfile = ({
                       id={review.id}
                       content={review.content}
                       rating={review.rating}
+                      clientId={review.client.id}
                       client={review.client.username}
                       img={review.client.profileImg}
                       firstName={review.client.firstName}

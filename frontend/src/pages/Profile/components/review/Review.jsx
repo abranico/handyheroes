@@ -4,11 +4,20 @@ import { AuthenticationContext } from "../../../../context/authentication/authen
 import { Link } from "react-router-dom";
 import { ReviewsContext } from "../../../../context/reviews/reviews.context";
 
-const Review = ({ id, content, rating, client, img, firstName, lastName }) => {
+const Review = ({
+  id,
+  content,
+  rating,
+  client,
+  img,
+  firstName,
+  lastName,
+  clientId,
+}) => {
   const { deleteReview } = useContext(ReviewsContext);
   const { user } = useContext(AuthenticationContext);
 
-  const isOwner = user.id === client;
+  const isOwner = user.id === clientId;
 
   return (
     <li className="flex flex-col gap-4 border shadow-md bg-neutral-100 rounded-md p-4 w-full">

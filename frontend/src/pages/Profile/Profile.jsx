@@ -47,7 +47,7 @@ const Profile = () => {
         )) ||
           (user.role === "client" && (
             <ClientProfile
-              image={user.ProfileImg}
+              image={user.profileImg}
               fullname={fullname}
               username={username}
               reviews={userReviews}
