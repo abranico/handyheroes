@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import {
-  PhoneIcon,
-  MapIcon,
   EmailIcon,
+  MapIcon,
+  PhoneIcon,
   StarIcon,
 } from "../../../../components/ui/icons";
 import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
@@ -22,9 +22,13 @@ const ProfessionalProfile = ({
   number,
   email,
   reviews,
+  isEditing,
+  handleSaveEdit,
+  setIsEditing,
+  role,
 }) => {
   const { user } = useContext(AuthenticationContext);
-  const [isEditing, setIsEditing] = useState(false);
+
   const [toggleMakeReview, setToggleMakeReview] = useState(false);
 
   const isOwner = user.username === username;
@@ -33,10 +37,6 @@ const ProfessionalProfile = ({
 
   const handleToggleMakeReview = () => {
     setToggleMakeReview(!toggleMakeReview);
-  };
-
-  const handleSaveEdit = () => {
-    setIsEditing(false);
   };
 
   return (
@@ -68,25 +68,16 @@ const ProfessionalProfile = ({
               <p className="text-mdm text-gray-600">@{username}</p>
             </div>
             {isOwner ? (
-              isEditing ? (
-                <button
-                  onClick={handleSaveEdit}
-                  type="button"
-                  className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-green-700 px-3 py-2 text-sm font-medium text-white transition hover:border-green-300 hover:bg-green-600 active:bg-green-700 focus:green-gray-300 focus:outline-none focus:ring-2 focus:ring-green-300"
-                >
-                  GUARDAR
-                </button>
-              ) : (
-                <button
-                  onClick={() => setIsEditing(true)}
-                  type="button"
-                  className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                >
-                  EDITAR
-                </button>
-              )
+              <button
+                onClick={() => setIsEditing(true)}
+                type="button"
+                className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              >
+                EDITAR
+              </button>
             ) : (
-              !reviewMade && (
+              !reviewMade &&
+              role == "client" && (
                 <button
                   type="button"
                   className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"

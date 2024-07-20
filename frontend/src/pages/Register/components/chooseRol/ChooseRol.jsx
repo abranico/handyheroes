@@ -4,6 +4,7 @@ const ChooseRol = ({
   rol,
   handleSubmit,
   error,
+  errorApi,
 }) => {
   return (
     <main className="mt-6 max-w-xl mx-auto  pb-11">
@@ -62,6 +63,11 @@ const ChooseRol = ({
           Volver atrás
         </button>
       </div>
+      {errorApi && (
+        <p className="text-red-400 text-center mt-5 font-bold">
+          Debes seleccionar un rol
+        </p>
+      )}
     </main>
   );
 };

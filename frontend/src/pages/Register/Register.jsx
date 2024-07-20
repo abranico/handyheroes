@@ -1,10 +1,9 @@
 import { useContext, useState } from "react";
 
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { AuthenticationContext } from "../../context/authentication/authentication.context";
 import BasicData from "./components/basicData/BasicData";
 import ChooseRol from "./components/chooseRol/ChooseRol";
-import { Link } from "react-router-dom";
-import { useNavigate, Navigate } from "react-router-dom";
-import { AuthenticationContext } from "../../context/authentication/authentication.context";
 
 const initialErrors = {
   username: false,
@@ -18,7 +17,15 @@ const initialErrors = {
 
 const Register = () => {
   const navigate = useNavigate();
-  const { handleRegister, user } = useContext(AuthenticationContext);
+
+  const {
+    handleRegister,
+    handleLogin,
+    user,
+    error: errorApi,
+    loading,
+  } = useContext(AuthenticationContext);
+
   const [basicData, setBasicData] = useState(false);
 
   const [rol, setRol] = useState(null);
@@ -45,15 +52,15 @@ const Register = () => {
   const handleErrors = () => {
     const newErrors = { ...initialErrors }; // Copia de initialErrors para resetear
 
-    if (username.trim().length < 5) {
+    if (username.trim() === "") {
       newErrors.username = true;
     }
 
-    if (firstname.trim().length < 5) {
+    if (firstname.trim() === "") {
       newErrors.firstname = true;
     }
 
-    if (lastname.trim().length < 5) {
+    if (lastname.trim() === "") {
       newErrors.lastname = true;
     }
 
@@ -61,7 +68,7 @@ const Register = () => {
       newErrors.email = true;
     }
 
-    if (password.trim().length < 8) {
+    if (password.trim().length < 7) {
       newErrors.password = true;
     }
 
@@ -69,9 +76,8 @@ const Register = () => {
       newErrors.validationPassword = true;
     }
 
-    setError(newErrors); // Actualiza el estado de errores con los nuevos errores calculados
+    setError(newErrors);
 
-    // Devuelve true si hay algún error, false si no hay errores
     return Object.values(newErrors).some((error) => error);
   };
 
@@ -81,24 +87,30 @@ const Register = () => {
 
     if (rol === null) {
       setError((prevError) => ({ ...prevError, rol: true }));
-      console.log("Error");
       return;
     }
-    console.log("Con exito");
 
-    const role = rol === "professional" ? 0 : 1;
     const newUser = {
-      username,
-      firstname,
-      lastname,
-      email,
-      password,
-      role,
+      firstName: firstname,
+      lastName: lastname,
+      username: username,
+      email: email,
+      password: password,
+      profileImg: "",
+      role: rol,
+      country: "",
+      city: "",
+      description: "",
+      phoneNumber: "",
+      service: "",
+      status: true,
     };
 
-    const register = handleRegister(newUser);
-    if (!register) return;
-    navigate("/services");
+    handleRegister(newUser).then(() =>
+      handleLogin(newUser.email, newUser.password).then(() => {
+        navigate("/services");
+      })
+    );
   };
 
   return (
@@ -116,9 +128,7 @@ const Register = () => {
             </h1>
           </a>
           <div className="flex gap-5 items-center">
-            <a href="" className="text-gray-500 hover:opacity-60">
-              ¿Ya eres usuario?
-            </a>
+            <p className="text-gray-500 select-none">¿Ya eres usuario?</p>
             <Link
               to="/login"
               className="border border-black px-5 py-1 rounded hover:opacity-60 "
@@ -131,8 +141,10 @@ const Register = () => {
 
       {!basicData ? (
         <BasicData
-          username={username}
-          handleUsername={(e) => setUsername(e.target.value)}
+          username={username.trim()}
+          handleUsername={(e) => {
+            setUsername(e.target.value);
+          }}
           firstname={firstname}
           handleFirstname={(e) => setFirstname(e.target.value)}
           lastname={lastname}
@@ -156,6 +168,7 @@ const Register = () => {
           rol={rol}
           handleSubmit={handleSubmit}
           error={error.rol}
+          errorApi={errorApi}
         />
       )}
     </>

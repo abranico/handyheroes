@@ -11,13 +11,17 @@ const useUsers = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const getAll = () => {
     setLoading(true);
     setError(null);
     getAllUsers()
       .then((data) => setUsers(data))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    getAll();
   }, []);
 
   // const getByUsername = (username) => {
@@ -55,7 +59,7 @@ const useUsers = () => {
       .finally(() => setLoading(false));
   };
 
-  return { partialUpdate, addUser, users, error, loading };
+  return { partialUpdate, addUser, getAll, users, error, loading };
 };
 
 export default useUsers;

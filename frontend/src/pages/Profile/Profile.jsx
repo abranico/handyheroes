@@ -1,14 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { LoadingSpinner } from "../../components";
 import { ReviewsContext } from "../../context/reviews/reviews.context";
 import { UsersContext } from "../../context/users/users.context";
 import { ClientProfile, ProfessionalProfile } from "./components";
+import EditProfile from "./components/editProfile/EditProfile";
+import { AuthenticationContext } from "../../context/authentication/authentication.context";
 
 const Profile = () => {
   const { username } = useParams();
-  const { users, loading } = useContext(UsersContext);
+
+  const { users, loading, handleUpdate } = useContext(UsersContext);
+  const { user: userAuth } = useContext(AuthenticationContext);
+
   const { reviews } = useContext(ReviewsContext);
+  const [isEditing, setIsEditing] = useState(false);
 
   const user = users.filter((user) => user.username === username)[0];
 
@@ -24,6 +30,11 @@ const Profile = () => {
   const rating =
     userReviews.reduce((acc, review) => acc + review.rating, 0) /
     userReviews.length;
+
+  const handleSaveEdit = (id, newUser) => {
+    setIsEditing(false);
+    handleUpdate(id, newUser);
+  };
 
   return (
     <>
@@ -43,6 +54,11 @@ const Profile = () => {
             email={user.email}
             reviews={userReviews}
             id={user.id}
+            role={user.role}
+            isEditing={isEditing}
+            handleSaveEdit={handleSaveEdit}
+            setIsEditing={setIsEditing}
+            role={userAuth.role}
           />
         )) ||
           (user.role === "client" && (
@@ -51,8 +67,19 @@ const Profile = () => {
               fullname={fullname}
               username={username}
               reviews={userReviews}
+              isEditing={isEditing}
+              handleSaveEdit={handleSaveEdit}
+              setIsEditing={setIsEditing}
             />
           )))}
+      {isEditing && (
+        <EditProfile
+          toggle={() => setIsEditing(!isEditing)}
+          handleSaveEdit={handleSaveEdit}
+          id={user.id}
+          role={user.role}
+        />
+      )}
     </>
   );
 };

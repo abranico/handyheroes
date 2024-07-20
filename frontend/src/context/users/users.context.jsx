@@ -4,7 +4,7 @@ import useUsers from "../../hooks/useUsers";
 export const UsersContext = createContext();
 
 export const UsersContextProvider = ({ children }) => {
-  const { users, loading, error, partialUpdate, addUser } = useUsers();
+  const { users, loading, error, partialUpdate, addUser, getAll } = useUsers();
 
   const handleUpdate = (id, data) => {
     partialUpdate(id, data);
@@ -22,6 +22,7 @@ export const UsersContextProvider = ({ children }) => {
         error,
         handleUpdate,
         handleAddUser,
+        getAll,
       }}
     >
       {!loading && children}

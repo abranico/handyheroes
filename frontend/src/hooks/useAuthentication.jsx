@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { login } from "../services/authentication";
+import { login, register } from "../services/authentication";
+import useUsers from "./useUsers";
 
 const useAuthentication = () => {
   const [user, setUser] = useState(() => {
@@ -8,6 +9,8 @@ const useAuthentication = () => {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const { addUser } = useUsers();
 
   const handleAuthenticate = (request) => {
     setError(null);
@@ -23,12 +26,26 @@ const useAuthentication = () => {
       .finally(() => setLoading(false));
   };
 
+  const handleRegister = (newUser) => {
+    setError(null);
+    setLoading(true);
+    return register(newUser)
+      .then((newUser) => {
+        addUser(newUser);
+        return newUser;
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => setLoading(false));
+  };
+
   const logout = () => {
     localStorage.removeItem("__user__");
     setUser(null);
   };
 
-  return { user, error, loading, handleAuthenticate, logout };
+  return { user, error, loading, handleAuthenticate, handleRegister, logout };
 };
 
 export default useAuthentication;
