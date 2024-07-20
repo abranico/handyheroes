@@ -5,7 +5,7 @@ import { UsersContext } from "../../context/users/users.context";
 import { User } from "./components";
 
 const Services = () => {
-  const { users } = useContext(UsersContext);
+  const { users, loading, error } = useContext(UsersContext);
 
   const [filters, setFilters] = useState({
     service: "",
@@ -13,14 +13,16 @@ const Services = () => {
     location: "",
   });
 
-  const professionals = users.filter(
-    (user) =>
-      user.description &&
-      user.city &&
-      user.country &&
-      user.service &&
-      user.status
-  );
+  const professionals = Array.isArray(users)
+    ? users.filter(
+        (user) =>
+          user.description &&
+          user.city &&
+          user.country &&
+          user.service &&
+          user.status
+      )
+    : [];
 
   const filteredProfessionals = professionals.filter((prof) => {
     const matchesService = filters.service
@@ -47,6 +49,8 @@ const Services = () => {
 
   return (
     <>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
       <header className="px-6 py-11  text-white bg-gradient-to-r from-cyan-600 to-blue-600 ">
         <h1 className="mx-14 text-4xl font-bold">
           Busca el profesional y servicio deseado.

@@ -39,7 +39,7 @@ export const fetchDeleteReview = async (id) => {
     const response = await fetch(`${API_URL}/${id}`, {
       method: "DELETE",
       headers: {
-        "content-type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
       },
       body: JSON.stringify(id),
     });

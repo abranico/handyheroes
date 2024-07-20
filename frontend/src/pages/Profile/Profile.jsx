@@ -1,18 +1,16 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { ReviewsContext } from "../../context/reviews/reviews.context";
-import useUsers from "../../hooks/useUsers";
-import { ClientProfile, ProfessionalProfile } from "./components";
 import { LoadingSpinner } from "../../components";
+import { ReviewsContext } from "../../context/reviews/reviews.context";
+import { UsersContext } from "../../context/users/users.context";
+import { ClientProfile, ProfessionalProfile } from "./components";
 
 const Profile = () => {
   const { username } = useParams();
-  const { getByUsername, users: user, loading } = useUsers();
+  const { users, loading } = useContext(UsersContext);
   const { reviews } = useContext(ReviewsContext);
 
-  useEffect(() => {
-    getByUsername(username);
-  }, [username]);
+  const user = users.filter((user) => user.username === username)[0];
 
   const fullname = user.firstName + " " + user.lastName;
 

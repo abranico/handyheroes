@@ -4,6 +4,7 @@ export const ReviewsContext = createContext();
 
 export const ReviewsContextProvider = ({ children }) => {
   const { reviews, loading, removeReview } = useReviews();
+
   const deleteReview = (id) => {
     removeReview(id);
   };

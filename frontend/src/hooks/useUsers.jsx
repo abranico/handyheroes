@@ -20,14 +20,14 @@ const useUsers = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const getByUsername = (username) => {
-    setLoading(true);
-    setError(null);
-    getUserByUsername(username)
-      .then((newUser) => setUsers(newUser[0]))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
-  };
+  // const getByUsername = (username) => {
+  //   setLoading(true);
+  //   setError(null);
+  //   getUserByUsername(username)
+  //     .then((newUser) => setUsers(newUser[0]))
+  //     .catch((error) => setError(error))
+  //     .finally(() => setLoading(false));
+  // };
 
   const partialUpdate = (id, partialData) => {
     setLoading(true);
@@ -55,7 +55,7 @@ const useUsers = () => {
       .finally(() => setLoading(false));
   };
 
-  return { getByUsername, partialUpdate, addUser, users, error, loading };
+  return { partialUpdate, addUser, users, error, loading };
 };
 
 export default useUsers;

@@ -1,11 +1,31 @@
+import { useContext } from "react";
 import { StarIcon } from "../../../../components/ui/icons";
+import { ReviewsContext } from "../../../../context/reviews/reviews.context";
+import { Link } from "react-router-dom";
 
-const Review = ({ id, img, firstName, lastName, rating, content }) => {
+const Review = ({
+  id,
+  img,
+  firstName,
+  lastName,
+  rating,
+  content,
+  username,
+}) => {
+  const { deleteReview } = useContext(ReviewsContext);
+
+  const handleDelete = () => {
+    deleteReview(id);
+  };
+
   return (
     <li className="flex flex-col gap-4 border shadow-md bg-gray-100 rounded-md p-4 text-gray-700">
       <header className="flex justify justify-between">
         <div className="flex gap-2">
-          <div className="flex items-center gap-2 hover:opacity-60">
+          <Link
+            to={`/user/${username}`}
+            className="flex items-center gap-2 hover:opacity-60"
+          >
             <img
               className="rounded-full max-w-7 max-h-7"
               src={img || "/placeholder-user.jpg"}
@@ -14,7 +34,7 @@ const Review = ({ id, img, firstName, lastName, rating, content }) => {
             <span>
               {firstName} {lastName}
             </span>
-          </div>
+          </Link>
         </div>
         <div className="flex p-1 gap-1 text-orange-300">
           {[...new Array(5)].map((star, index) =>
@@ -31,7 +51,11 @@ const Review = ({ id, img, firstName, lastName, rating, content }) => {
 
       <footer className="flex justify-between">
         <span>Feb 13, 2021</span>
-        {true && <button className="text-red-500">Eliminar</button>}
+        {true && (
+          <button onClick={handleDelete} className="text-red-500">
+            Eliminar
+          </button>
+        )}
       </footer>
     </li>
   );

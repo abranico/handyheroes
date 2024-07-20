@@ -17,6 +17,10 @@ const Review = ({
   const { deleteReview } = useContext(ReviewsContext);
   const { user } = useContext(AuthenticationContext);
 
+  const handleDelete = () => {
+    deleteReview(id);
+  };
+
   const isOwner = user.id === clientId;
 
   return (
@@ -54,7 +58,7 @@ const Review = ({
       <footer className="flex justify-between">
         <span>Feb 13, 2021</span>
         {isOwner && (
-          <button onClick={() => deleteReview(id)} className="text-red-500">
+          <button onClick={handleDelete} className="text-red-500">
             Eliminar
           </button>
         )}

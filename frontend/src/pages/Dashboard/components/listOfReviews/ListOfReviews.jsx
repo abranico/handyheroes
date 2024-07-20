@@ -23,11 +23,10 @@ const ListOfReviews = ({ role, id }) => {
             id={review.id}
             content={review.content}
             rating={review.rating}
-            clientId={review.client.id}
-            client={review.client.username}
             img={review.client.profileImg}
             firstName={review.client.firstName}
             lastName={review.client.lastName}
+            username={review.client.username}
           />
         ))}
       {role === "client" &&
@@ -42,8 +41,7 @@ const ListOfReviews = ({ role, id }) => {
             img={review.professional.profileImg}
             firstName={review.professional.firstName}
             lastName={review.professional.lastName}
-            client={review.professional.username}
-            clientId={review.client.id}
+            username={review.professional.username}
           />
         ))}
     </ul>
