@@ -45,6 +45,7 @@ const ClientProfile = ({ image, fullname, username, reviews }) => {
                       lastName={review.professional.lastName}
                       client={review.professional.username}
                       clientId={review.client.id}
+                      date={review.date}
                     />
                   ))
                 ) : (

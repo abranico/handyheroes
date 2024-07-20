@@ -42,6 +42,7 @@ const ListOfReviews = ({ role, id }) => {
             firstName={review.professional.firstName}
             lastName={review.professional.lastName}
             username={review.professional.username}
+            date={review.date}
           />
         ))}
     </ul>

@@ -32,7 +32,8 @@ const Profile = () => {
         ((user.role === "professional" && (
           <ProfessionalProfile
             image={user.profileImg}
-            fullname={fullname}
+            firstname={user.firstName}
+            lastName={user.lastName}
             username={username}
             rating={rating}
             service={user.service}
@@ -41,6 +42,7 @@ const Profile = () => {
             number={user.phoneNumber}
             email={user.email}
             reviews={userReviews}
+            id={user.id}
           />
         )) ||
           (user.role === "client" && (

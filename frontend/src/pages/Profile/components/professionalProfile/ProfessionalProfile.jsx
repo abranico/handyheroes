@@ -7,10 +7,13 @@ import {
 } from "../../../../components/ui/icons";
 import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
 import { Review } from "../../components";
+import MakeReview from "./makeReview/MakeReview";
 
 const ProfessionalProfile = ({
+  id,
   image,
-  fullname,
+  firstName,
+  lastName,
   username,
   rating,
   service,
@@ -21,17 +24,33 @@ const ProfessionalProfile = ({
   reviews,
 }) => {
   const { user } = useContext(AuthenticationContext);
-  console.log(user);
-  const isOwner = user.username === username;
-  console.log(isOwner);
   const [isEditing, setIsEditing] = useState(false);
-  console.log(reviews);
+  const [toggleMakeReview, setToggleMakeReview] = useState(false);
+
+  const isOwner = user.username === username;
+
+  const reviewMade = reviews.find((review) => review.client.id === user.id);
+
+  const handleToggleMakeReview = () => {
+    setToggleMakeReview(!toggleMakeReview);
+  };
+
   const handleSaveEdit = () => {
     setIsEditing(false);
   };
 
   return (
     <>
+      {toggleMakeReview && (
+        <MakeReview
+          toggle={handleToggleMakeReview}
+          id={id}
+          username={username}
+          firstName={firstName}
+          lastName={lastName}
+          profileImg={image}
+        />
+      )}
       <div className="h-[180px] text-white bg-gradient-to-r from-cyan-600 to-blue-600"></div>
       <main className="px-5 py-2 flex flex-col gap-3 pb-6 max-w-4xl mx-auto ">
         <header className=" flex items-center gap-5 ">
@@ -44,7 +63,7 @@ const ProfessionalProfile = ({
           <div className="-mt-10 flex justify-between w-full">
             <div>
               <h3 className="text-3xl text-slate-900 relative font-bold leading-6">
-                {fullname}
+                {firstName} {lastName}
               </h3>
               <p className="text-mdm text-gray-600">@{username}</p>
             </div>
@@ -67,10 +86,11 @@ const ProfessionalProfile = ({
                 </button>
               )
             ) : (
-              !reviews.some((review) => review.clientId === user.id) && (
+              !reviewMade && (
                 <button
                   type="button"
                   className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  onClick={handleToggleMakeReview}
                 >
                   Dejar reseña
                 </button>
@@ -141,6 +161,7 @@ const ProfessionalProfile = ({
                       img={review.client.profileImg}
                       firstName={review.client.firstName}
                       lastName={review.client.lastName}
+                      date={review.date}
                     />
                   ))
                 ) : (

@@ -24,6 +24,7 @@ export const fetchAddReview = async (review) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
       },
       body: JSON.stringify(review),
     });
