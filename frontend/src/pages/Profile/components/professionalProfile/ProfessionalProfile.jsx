@@ -6,8 +6,8 @@ import {
   StarIcon,
 } from "../../../../components/ui/icons";
 import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
-import { Review } from "../../components";
-import MakeReview from "./makeReview/MakeReview";
+import Review from "../review/Review";
+import MakeReview from "../makeReview/MakeReview";
 
 const ProfessionalProfile = ({
   id,
@@ -22,10 +22,9 @@ const ProfessionalProfile = ({
   number,
   email,
   reviews,
-  isEditing,
-  handleSaveEdit,
+
   setIsEditing,
-  role,
+  roleAuth,
 }) => {
   const { user } = useContext(AuthenticationContext);
 
@@ -77,7 +76,7 @@ const ProfessionalProfile = ({
               </button>
             ) : (
               !reviewMade &&
-              role == "client" && (
+              roleAuth == "client" && (
                 <button
                   type="button"
                   className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"

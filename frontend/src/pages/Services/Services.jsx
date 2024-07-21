@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { Input, Select } from "../../components";
 import { MapIcon, SearchIcon } from "../../components/ui/icons";
 import { UsersContext } from "../../context/users/users.context";
-import { User } from "./components";
+import User from "./components/user/User";
 
 const Services = () => {
   const { users, loading, error } = useContext(UsersContext);
@@ -13,39 +13,42 @@ const Services = () => {
     location: "",
   });
 
-  const professionals = Array.isArray(users)
-    ? users.filter(
-        (user) =>
-          user.description &&
-          user.city &&
-          user.country &&
-          user.service &&
-          user.status
-      )
-    : [];
+  const professionals = useMemo(() => {
+    if (!Array.isArray(users)) return [];
+    return users.filter(
+      (user) =>
+        user.description &&
+        user.city &&
+        user.country &&
+        user.service &&
+        user.status
+    );
+  }, [users]);
 
-  const filteredProfessionals = professionals.filter((prof) => {
-    const matchesService = filters.service
-      ? prof.service.toLowerCase() == filters.service.toLowerCase()
-      : true;
+  const filteredProfessionals = useMemo(() => {
+    return professionals.filter((prof) => {
+      const matchesService = filters.service
+        ? prof.service.toLowerCase() === filters.service.toLowerCase()
+        : true;
 
-    const matchesProfessional = filters.professional
-      ? (prof.firstName + " " + prof.lastName)
-          .toLowerCase()
-          .includes(filters.professional.toLowerCase())
-      : true;
+      const matchesProfessional = filters.professional
+        ? (prof.firstName + " " + prof.lastName)
+            .toLowerCase()
+            .includes(filters.professional.toLowerCase())
+        : true;
 
-    const matchesLocation = filters.location
-      ? prof.city.toLowerCase().includes(filters.location.toLowerCase()) ||
-        prof.country.toLowerCase().includes(filters.location.toLowerCase())
-      : true;
+      const matchesLocation = filters.location
+        ? prof.city.toLowerCase().includes(filters.location.toLowerCase()) ||
+          prof.country.toLowerCase().includes(filters.location.toLowerCase())
+        : true;
 
-    return matchesService && matchesProfessional && matchesLocation;
-  });
+      return matchesService && matchesProfessional && matchesLocation;
+    });
+  }, [professionals, filters]);
 
-  const services = [...new Set(professionals.map((user) => user.service))];
-
-  console.log(services);
+  const services = useMemo(() => {
+    return [...new Set(professionals.map((user) => user.service))];
+  }, [professionals]);
 
   return (
     <>

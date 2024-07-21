@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
-import { Review } from "../../components";
+import Review from "../review/Review";
 
 const ClientProfile = ({
   id,

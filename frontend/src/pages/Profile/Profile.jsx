@@ -1,9 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { LoadingSpinner } from "../../components";
 import { ReviewsContext } from "../../context/reviews/reviews.context";
 import { UsersContext } from "../../context/users/users.context";
-import { ClientProfile, ProfessionalProfile } from "./components";
+import ClientProfile from "./components/clientProfile/ClientProfile";
+import ProfessionalProfile from "./components/professionalProfile/ProfessionalProfile";
 import EditProfile from "./components/editProfile/EditProfile";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
 
@@ -16,16 +17,19 @@ const Profile = () => {
   const { reviews } = useContext(ReviewsContext);
   const [isEditing, setIsEditing] = useState(false);
 
-  const user = users.filter((user) => user.username === username)[0];
+  const user = useMemo(() => {
+    return users.find((user) => user.username === username);
+  }, [users, username]);
 
   const fullname = user.firstName + " " + user.lastName;
 
   const location = user.country + ", " + user.city;
 
-  const userReviews =
-    user.role === "professional"
-      ? reviews.filter((review) => review.professional.id == user.id)
-      : reviews.filter((review) => review.client.id == user.id);
+  const userReviews = useMemo(() => {
+    return user.role === "professional"
+      ? reviews.filter((review) => review.professional.id === user.id)
+      : reviews.filter((review) => review.client.id === user.id);
+  }, [reviews, user]);
 
   const rating =
     userReviews.reduce((acc, review) => acc + review.rating, 0) /
@@ -58,7 +62,7 @@ const Profile = () => {
             isEditing={isEditing}
             handleSaveEdit={handleSaveEdit}
             setIsEditing={setIsEditing}
-            role={userAuth.role}
+            roleAuth={userAuth.role}
           />
         )) ||
           (user.role === "client" && (

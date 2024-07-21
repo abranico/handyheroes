@@ -23,7 +23,6 @@ const Register = () => {
     handleLogin,
     user,
     error: errorApi,
-    loading,
   } = useContext(AuthenticationContext);
 
   const [basicData, setBasicData] = useState(false);

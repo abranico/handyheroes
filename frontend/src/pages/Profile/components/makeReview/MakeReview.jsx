@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { AuthenticationContext } from "../../../../../context/authentication/authentication.context";
-import { ReviewsContext } from "../../../../../context/reviews/reviews.context";
+import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
+import { ReviewsContext } from "../../../../context/reviews/reviews.context";
 
 const MakeReview = ({
   toggle,

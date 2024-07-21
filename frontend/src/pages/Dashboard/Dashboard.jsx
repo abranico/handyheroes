@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
 import { Input, LoadingSpinner } from "../../components";
 import { SearchIcon } from "../../components/ui/icons";
 import AddIcon from "../../components/ui/icons/AddIcon";
@@ -12,20 +12,22 @@ const Dashboard = () => {
 
   const { users, loading } = useContext(UsersContext);
 
-  const filteredUsers = users.filter((user) => {
-    if (filter === "") return true;
-    const filterLower = filter.toLowerCase();
-    return (
-      user.username?.toLowerCase().includes(filterLower) ||
-      user.email?.toLowerCase().includes(filterLower) ||
-      user.firstName?.toLowerCase().includes(filterLower) ||
-      user.lastName?.toLowerCase().includes(filterLower)
-    );
-  });
+  const filteredUsers = useMemo(() => {
+    return users.filter((user) => {
+      if (filter === "") return true;
+      const filterLower = filter.toLowerCase();
+      return (
+        user.username?.toLowerCase().includes(filterLower) ||
+        user.email?.toLowerCase().includes(filterLower) ||
+        user.firstName?.toLowerCase().includes(filterLower) ||
+        user.lastName?.toLowerCase().includes(filterLower)
+      );
+    });
+  }, [users, filter]);
 
-  const handleToggleAddUser = () => {
-    setToggleAddUser(!toggleAddUser);
-  };
+  const handleToggleAddUser = useCallback(() => {
+    setToggleAddUser((prev) => !prev);
+  }, []);
 
   return (
     <>
