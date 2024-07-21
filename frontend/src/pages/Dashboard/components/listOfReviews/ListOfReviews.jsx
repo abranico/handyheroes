@@ -1,19 +1,6 @@
-import { useContext } from "react";
 import Review from "../review/Review";
-import { ReviewsContext } from "../../../../context/reviews/reviews.context";
 
-const ListOfReviews = ({ role, id }) => {
-  const { reviews } = useContext(ReviewsContext);
-
-  const reviewsMade = reviews.filter((review) => {
-    if (role === "professional") {
-      return review.professional.id === id;
-    } else if (role === "client") {
-      return review.client.id === id;
-    }
-    return false;
-  });
-
+const ListOfReviews = ({ role, reviewsMade }) => {
   return (
     <ul className="p-5 flex flex-col gap-5 overflow-y-auto max-h-80 ">
       {role === "professional" &&

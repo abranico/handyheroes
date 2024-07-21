@@ -4,3 +4,8 @@ export { default as MapIcon } from "./MapIcon";
 export { default as EmailIcon } from "./EmailIcon";
 export { default as StarIcon } from "./StarIcon";
 export { default as BlockIcon } from "./BlockIcon";
+export { default as EditIcon } from "./EditIcon";
+export { default as RestoreIcon } from "./RestoreIcon";
+export { default as DeleteIcon } from "./DeleteIcon";
+export { default as ArrowDown } from "./ArrowDown";
+export { default as ArrowRight } from "./ArrowRight";

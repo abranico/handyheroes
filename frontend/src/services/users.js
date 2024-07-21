@@ -70,3 +70,19 @@ export const createUser = async (newUser) => {
     throw new Error("Failed to add user");
   }
 };
+
+export const deleteUser = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      body: JSON.stringify(id),
+    });
+    if (!response.ok) throw new Error("Error deleting user");
+    return true;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};

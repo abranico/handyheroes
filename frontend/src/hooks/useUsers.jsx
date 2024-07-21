@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   getAllUsers,
-  getUserByUsername,
+  deleteUser,
   userPartialUpdate,
   createUser,
 } from "../services/users";
@@ -23,15 +23,6 @@ const useUsers = () => {
   useEffect(() => {
     getAll();
   }, []);
-
-  // const getByUsername = (username) => {
-  //   setLoading(true);
-  //   setError(null);
-  //   getUserByUsername(username)
-  //     .then((newUser) => setUsers(newUser[0]))
-  //     .catch((error) => setError(error))
-  //     .finally(() => setLoading(false));
-  // };
 
   const partialUpdate = (id, partialData) => {
     setLoading(true);
@@ -59,7 +50,23 @@ const useUsers = () => {
       .finally(() => setLoading(false));
   };
 
-  return { partialUpdate, addUser, getAll, users, error, loading };
+  const removeUser = async (id) => {
+    try {
+      setError(null);
+      setLoading(true);
+      const check = await deleteUser(id);
+      if (check)
+        setUsers((prevRevies) =>
+          prevRevies.filter((review) => review.id !== id)
+        );
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { partialUpdate, addUser, removeUser, getAll, users, error, loading };
 };
 
 export default useUsers;
