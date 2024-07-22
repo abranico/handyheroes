@@ -110,15 +110,14 @@ const User = ({
           >
             {status ? <BlockIcon width={30} height={30} /> : <RestoreIcon />}
           </button>
-          {role != "admin" && (
-            <button
-              className="hover:opacity-45"
-              title="Borrar"
-              onClick={handleToggleDeleteUser}
-            >
-              <DeleteIcon width={30} height={30} />
-            </button>
-          )}
+
+          <button
+            className="hover:opacity-45"
+            title="Borrar"
+            onClick={handleToggleDeleteUser}
+          >
+            <DeleteIcon width={30} height={30} />
+          </button>
         </td>
       </tr>
 
