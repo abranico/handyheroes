@@ -103,9 +103,6 @@ const ProfessionalProfile = ({
                     )
                   )}
 
-                  <span className="ms-2 text-sm font-bold text-gray-900 ">
-                    {rating}
-                  </span>
                   <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full "></span>
                   <a
                     href="#reviews"

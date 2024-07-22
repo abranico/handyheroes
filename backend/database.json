@@ -1,7 +1,18 @@
 {
   "protectedResources": {
-    "users": ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    "reviews": ["POST", "PUT", "PATCH", "DELETE"]
+    "users": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ],
+    "reviews": [
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ]
   },
   "users": [
     {
@@ -18,7 +29,8 @@
       "city": null,
       "description": null,
       "phoneNumber": null,
-      "services": null
+      "service": null,
+      "modifiedAt": 1721339758847
     },
     {
       "id": 2,
@@ -34,7 +46,8 @@
       "country": null,
       "city": null,
       "description": null,
-      "services": null
+      "service": null,
+      "modifiedAt": 1721416511611
     },
     {
       "id": 3,
@@ -50,7 +63,8 @@
       "country": null,
       "city": null,
       "description": null,
-      "services": null
+      "service": null,
+      "modifiedAt": 1721415470852
     },
     {
       "id": 4,
@@ -67,7 +81,8 @@
       "country": "Argentina",
       "city": "Rosario",
       "description": "Soy un albañil con experiencia en reformas y construcciones.",
-      "services": ["Albañil"]
+      "service": "Albañil",
+      "modifiedAt": 1721415271088
     },
     {
       "id": 5,
@@ -83,7 +98,7 @@
       "country": null,
       "city": null,
       "description": null,
-      "services": null
+      "service": null
     },
     {
       "id": 6,
@@ -94,12 +109,13 @@
       "password": "GH1yLLmJoq",
       "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
       "phoneNumber": "686-821-0488",
-      "status": false,
+      "status": true,
       "role": "professional",
       "country": "Argentina",
       "city": "Rosario",
       "description": "Soy un carpintero especializado en muebles a medida.",
-      "services": ["Carpintero"]
+      "service": "Carpintero",
+      "modifiedAt": 1721337454468
     },
     {
       "id": 7,
@@ -115,7 +131,7 @@
       "country": null,
       "city": null,
       "description": null,
-      "services": null
+      "service": null
     },
     {
       "id": 8,
@@ -131,7 +147,7 @@
       "country": "Argentina",
       "city": "Rosario",
       "description": "Soy un electricista con más de 10 años de experiencia.",
-      "services": ["Electricista"]
+      "service": "Electricista"
     },
     {
       "id": 9,
@@ -147,7 +163,7 @@
       "country": null,
       "city": null,
       "description": null,
-      "services": null
+      "service": null
     },
     {
       "id": 10,
@@ -163,79 +179,320 @@
       "country": "Argentina",
       "city": "Rosario",
       "description": "Soy un plomero con amplia experiencia en instalaciones y reparaciones.",
-      "services": ["Plomero"]
+      "service": "Plomeroo",
+      "modifiedAt": 1721469442625
+    },
+    {
+      "firstName": "Ramiro",
+      "lastName": "Muñoz",
+      "username": "ramamunoz",
+      "email": "ramiromunioz@gmail.com",
+      "password": "password123",
+      "profileImg": "",
+      "role": "professional",
+      "country": "",
+      "city": "",
+      "description": "",
+      "phoneNumber": "",
+      "status": true,
+      "service": "",
+      "createdAt": 1721420926430,
+      "modifiedAt": 1721422789984,
+      "id": 11
+    },
+    {
+      "id": 12,
+      "firstName": "Pedro",
+      "lastName": "Mendieta",
+      "username": "pedromendieta",
+      "email": "pedromendieta@gmail.com",
+      "password": "password123",
+      "profileImg": "",
+      "role": "client",
+      "country": "",
+      "city": "",
+      "description": "",
+      "phoneNumber": "",
+      "service": "",
+      "status": true,
+      "createdAt": 1721433415361,
+      "modifiedAt": 1721433415361
+    },
+    {
+      "id": 13,
+      "firstName": "Kevin",
+      "lastName": "Kener",
+      "username": "kevinkener",
+      "email": "kevinkene@gmail.com",
+      "password": "password123",
+      "profileImg": "",
+      "role": "client",
+      "country": "",
+      "city": "",
+      "description": "",
+      "phoneNumber": "",
+      "service": "",
+      "status": true,
+      "createdAt": 1721433852317,
+      "modifiedAt": 1721433852317
+    },
+    {
+      "id": 14,
+      "firstName": "Lautaro",
+      "lastName": "Vallejos",
+      "username": "lautivallejos",
+      "email": "lautivallejos@gmail.com",
+      "password": "password123",
+      "profileImg": "",
+      "role": "client",
+      "country": "",
+      "city": "",
+      "description": "",
+      "phoneNumber": "",
+      "service": "",
+      "status": true,
+      "createdAt": 1721433994028,
+      "modifiedAt": 1721433994028
+    },
+    {
+      "id": 26,
+      "firstName": "Alejo",
+      "lastName": "Perez",
+      "username": "aloy",
+      "email": "alejoperez@gmail.com",
+      "password": "password123",
+      "profileImg": "",
+      "role": "client",
+      "country": "",
+      "city": "",
+      "description": "",
+      "phoneNumber": "",
+      "service": "",
+      "status": true,
+      "createdAt": 1721467477187,
+      "modifiedAt": 1721467477187
     }
   ],
   "reviews": [
     {
       "id": 1,
-      "clientId": 2,
-      "professionalId": 1,
+      "client": {
+        "id": 2,
+        "username": "afarncomb1",
+        "firstName": "Alberta",
+        "lastName": "Farncomb",
+        "profileImg": "https://robohash.org/accusantiumminimamagni.png?size=50x50&set=set1",
+        "status": false
+      },
+      "professional": {
+        "id": 6,
+        "username": "ugorrick5",
+        "firstName": "Ursulino",
+        "lastName": "Gorrick",
+        "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Muy buen servicio!",
+      "date": "19 jul 2024",
       "rating": 3
     },
     {
       "id": 2,
-      "clientId": 3,
-      "professionalId": 6,
+      "client": {
+        "id": 3,
+        "username": "kshama2",
+        "firstName": "Kizzie",
+        "lastName": "Shama",
+        "profileImg": "https://robohash.org/voluptatemdebitiset.png?size=50x50&set=set1",
+        "status": true
+      },
+      "professional": {
+        "id": 6,
+        "username": "ugorrick5",
+        "firstName": "Ursulino",
+        "lastName": "Gorrick",
+        "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Muy profesional y eficiente.",
+      "date": "19 jul 2024",
       "rating": 4
     },
     {
-      "id": 3,
-      "clientId": 5,
-      "professionalId": 8,
-      "content": "Trabajo impecable, muy recomendable.",
-      "rating": 5
-    },
-    {
       "id": 4,
-      "clientId": 7,
-      "professionalId": 10,
+      "client": {
+        "id": 7,
+        "username": "cchivers6",
+        "firstName": "Carlotta",
+        "lastName": "Chivers",
+        "profileImg": "https://robohash.org/voluptatequasiest.png?size=50x50&set=set1",
+        "status": true
+      },
+      "professional": {
+        "id": 10,
+        "username": "aloughan9",
+        "firstName": "Alexis",
+        "lastName": "Loughan",
+        "profileImg": "https://robohash.org/suntisteaperiam.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Buen servicio, aunque podría mejorar en algunos aspectos.",
+      "date": "19 jul 2024",
       "rating": 3
     },
     {
       "id": 5,
-      "clientId": 9,
-      "professionalId": 4,
+      "client": {
+        "id": 9,
+        "username": "ckynnd8",
+        "firstName": "Chick",
+        "lastName": "Kynnd",
+        "profileImg": "https://robohash.org/commodiexplicaboveritatis.png?size=50x50&set=set1",
+        "status": true
+      },
+      "professional": {
+        "id": 4,
+        "username": "tamerici3",
+        "firstName": "Tremayne",
+        "lastName": "Americi",
+        "profileImg": "https://robohash.org/rerumoccaecatiprovident.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Excelente trabajo, volveré a contratar sus servicios.",
+      "date": "19 jul 2024",
       "rating": 5
     },
     {
       "id": 6,
-      "clientId": 2,
-      "professionalId": 6,
+      "client": {
+        "id": 2,
+        "username": "afarncomb1",
+        "firstName": "Alberta",
+        "lastName": "Farncomb",
+        "profileImg": "https://robohash.org/accusantiumminimamagni.png?size=50x50&set=set1",
+        "status": false
+      },
+      "professional": {
+        "id": 6,
+        "username": "ugorrick5",
+        "firstName": "Ursulino",
+        "lastName": "Gorrick",
+        "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Trabajo rápido y de calidad.",
+      "date": "19 jul 2024",
       "rating": 4
     },
     {
       "id": 7,
-      "clientId": 3,
-      "professionalId": 8,
+      "client": {
+        "id": 3,
+        "username": "kshama2",
+        "firstName": "Kizzie",
+        "lastName": "Shama",
+        "profileImg": "https://robohash.org/voluptatemdebitiset.png?size=50x50&set=set1",
+        "status": true
+      },
+      "professional": {
+        "id": 8,
+        "username": "thumblestone7",
+        "firstName": "Thorpe",
+        "lastName": "Humblestone",
+        "profileImg": "https://robohash.org/voluptasetexplicabo.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Buen servicio, pero algo costoso.",
+      "date": "19 jul 2024",
       "rating": 3
     },
     {
       "id": 8,
-      "clientId": 5,
-      "professionalId": 10,
+      "client": {
+        "id": 5,
+        "username": "lfernihough4",
+        "firstName": "Luciana",
+        "lastName": "Fernihough",
+        "profileImg": "https://robohash.org/nobisplaceataut.png?size=50x50&set=set1",
+        "status": true
+      },
+      "professional": {
+        "id": 10,
+        "username": "aloughan9",
+        "firstName": "Alexis",
+        "lastName": "Loughan",
+        "profileImg": "https://robohash.org/suntisteaperiam.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Muy satisfecho con el resultado.",
+      "date": "19 jul 2024",
       "rating": 5
     },
     {
       "id": 9,
-      "clientId": 7,
-      "professionalId": 4,
+      "client": {
+        "id": 7,
+        "username": "cchivers6",
+        "firstName": "Carlotta",
+        "lastName": "Chivers",
+        "profileImg": "https://robohash.org/voluptatequasiest.png?size=50x50&set=set1",
+        "status": true
+      },
+      "professional": {
+        "id": 4,
+        "username": "tamerici3",
+        "firstName": "Tremayne",
+        "lastName": "Americi",
+        "profileImg": "https://robohash.org/rerumoccaecatiprovident.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Cumplió con lo prometido, buena atención.",
+      "date": "19 jul 2024",
       "rating": 4
     },
     {
       "id": 10,
-      "clientId": 9,
-      "professionalId": 6,
+      "client": {
+        "id": 9,
+        "username": "ckynnd8",
+        "firstName": "Chick",
+        "lastName": "Kynnd",
+        "profileImg": "https://robohash.org/commodiexplicaboveritatis.png?size=50x50&set=set1",
+        "status": true
+      },
+      "professional": {
+        "id": 6,
+        "username": "ugorrick5",
+        "firstName": "Ursulino",
+        "lastName": "Gorrick",
+        "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
+        "status": true
+      },
       "content": "Servicio excelente y muy amable.",
-      "rating": 5
+      "rating": 5,
+      "date": "19 jul 2024"
+    },
+    {
+      "client": {
+        "id": 5,
+        "username": "lfernihough4",
+        "firstName": "Luciana",
+        "profileImg": "https://robohash.org/nobisplaceataut.png?size=50x50&set=set1",
+        "status": true
+      },
+      "professional": {
+        "id": 8,
+        "username": "thumblestone7",
+        "lastName": "Humblestone",
+        "profileImg": "https://robohash.org/voluptasetexplicabo.png?size=50x50&set=set1",
+        "status": true
+      },
+      "content": "asdasdasd",
+      "rating": "2",
+      "date": "19 jul 2024",
+      "createdAt": 1721432159187,
+      "modifiedAt": 1721432159187,
+      "id": 11
     }
   ]
 }

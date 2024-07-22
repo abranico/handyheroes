@@ -8,7 +8,6 @@ const EditUser = ({ toggle, id }) => {
   const [newUser, setNewUser] = useState({
     firstName: user.firstName,
     lastName: user.lastName,
-    username: user.username,
     email: user.email,
     password: user.password,
     profileImg: user.profileImg,
@@ -36,16 +35,10 @@ const EditUser = ({ toggle, id }) => {
     if (
       newUser.firstName.trim() === "" ||
       newUser.lastName.trim() === "" ||
-      newUser.username.trim() === "" ||
       newUser.email.trim() === "" ||
       newUser.password.trim() === ""
     )
       return setError("Debes completar los datos requeridos");
-    if (
-      users.find((user) => user.username === newUser.username) &&
-      user.username != newUser.username
-    )
-      return setError("Ya hay una cuenta con ese nombre de usuario");
     if (
       users.find((user) => user.email === newUser.email) &&
       user.email != newUser.email
@@ -93,19 +86,7 @@ const EditUser = ({ toggle, id }) => {
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Nombre de usuario *
-              </label>
-              <input
-                type="text"
-                required
-                name="username"
-                value={newUser.username}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Email *

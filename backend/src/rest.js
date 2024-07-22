@@ -41,7 +41,7 @@ export const loginHandler = (db, req, res) => {
     (u) => (u.username === username || u.email === email) && u.password === pwd
   );
 
-  if (user && user.password === pwd) {
+  if (user && user.password === pwd && user.status) {
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
     const { password, ...userWithoutPassword } = user;

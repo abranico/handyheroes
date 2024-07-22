@@ -14,6 +14,7 @@ const ListOfReviews = ({ role, reviewsMade }) => {
             firstName={review.client.firstName}
             lastName={review.client.lastName}
             username={review.client.username}
+            date={review.date}
           />
         ))}
       {role === "client" &&

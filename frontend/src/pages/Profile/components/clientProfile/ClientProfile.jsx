@@ -33,27 +33,25 @@ const ClientProfile = ({
                 {fullname}
               </h3>
               <p className="text-mdm text-gray-600">@{username}</p>
-              <div>
-                {isOwner &&
-                  (isEditing ? (
-                    <button
-                      onClick={() => handleSaveEdit(id)}
-                      type="button"
-                      className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-green-700 px-3 py-2 text-sm font-medium text-white transition hover:border-green-300 hover:bg-green-600 active:bg-green-700 focus:green-gray-300 focus:outline-none focus:ring-2 focus:ring-green-300"
-                    >
-                      GUARDAR
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => setIsEditing(true)}
-                      type="button"
-                      className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                    >
-                      EDITAR
-                    </button>
-                  ))}
-              </div>
             </div>
+            {isOwner &&
+              (isEditing ? (
+                <button
+                  onClick={() => handleSaveEdit(id)}
+                  type="button"
+                  className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-green-700 px-3 py-2 text-sm font-medium text-white transition hover:border-green-300 hover:bg-green-600 active:bg-green-700 focus:green-gray-300 focus:outline-none focus:ring-2 focus:ring-green-300"
+                >
+                  GUARDAR
+                </button>
+              ) : (
+                <button
+                  onClick={() => setIsEditing(true)}
+                  type="button"
+                  className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                >
+                  EDITAR
+                </button>
+              ))}
           </div>
         </header>
 

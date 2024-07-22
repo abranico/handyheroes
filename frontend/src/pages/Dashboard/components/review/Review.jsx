@@ -11,6 +11,7 @@ const Review = ({
   rating,
   content,
   username,
+  date,
 }) => {
   const { deleteReview } = useContext(ReviewsContext);
 
@@ -50,7 +51,7 @@ const Review = ({
       <p className="text-gray-600">{content}</p>
 
       <footer className="flex justify-between">
-        <span>Feb 13, 2021</span>
+        <span>{date}</span>
         {true && (
           <button onClick={handleDelete} className="text-red-500">
             Eliminar
