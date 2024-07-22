@@ -22,7 +22,6 @@ const ProfessionalProfile = ({
   number,
   email,
   reviews,
-
   setIsEditing,
   roleAuth,
 }) => {
