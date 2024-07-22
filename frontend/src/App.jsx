@@ -38,7 +38,7 @@ function App() {
     {
       path: "/dashboard",
       element: (
-        <Protected>
+        <Protected type="admin">
           <Dashboard />
         </Protected>
       ),
