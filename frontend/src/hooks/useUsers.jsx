@@ -56,7 +56,7 @@ const useUsers = () => {
       setLoading(true);
       const check = await deleteUser(id);
       if (check)
-        setUsers((prevRevies) =>
+        return setUsers((prevRevies) =>
           prevRevies.filter((review) => review.id !== id)
         );
     } catch (error) {

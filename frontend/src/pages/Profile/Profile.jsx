@@ -7,6 +7,7 @@ import ClientProfile from "./components/clientProfile/ClientProfile";
 import ProfessionalProfile from "./components/professionalProfile/ProfessionalProfile";
 import EditProfile from "./components/editProfile/EditProfile";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
+import NotFound from "../../routes/NotFound";
 
 const Profile = () => {
   const { username } = useParams();
@@ -20,6 +21,8 @@ const Profile = () => {
   const user = useMemo(() => {
     return users.find((user) => user.username === username);
   }, [users, username]);
+
+  if (!user) return <NotFound />;
 
   const fullname = user.firstName + " " + user.lastName;
 

@@ -105,11 +105,15 @@ const Register = () => {
       status: true,
     };
 
-    handleRegister(newUser).then(() =>
-      handleLogin(newUser.email, newUser.password).then(() => {
-        navigate("/services");
-      })
-    );
+    handleRegister(newUser).then((user) => {
+      if (user) {
+        handleLogin(newUser.email, newUser.password).then(() => {
+          navigate("/services");
+        });
+      } else {
+        alert("Elnombre de usuario o correo ya esta en uso");
+      }
+    });
   };
 
   return (
