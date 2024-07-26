@@ -54,7 +54,7 @@ const Profile = () => {
             lastName={user.lastName}
             username={username}
             rating={rating}
-            service={user.service}
+            serviceId={user.serviceId}
             location={location}
             description={user.description}
             number={user.phoneNumber}

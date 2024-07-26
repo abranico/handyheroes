@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ReviewsContext } from "../../../../context/reviews/reviews.context";
 import { Link } from "react-router-dom";
+import { ServicesContext } from "../../../../context/services/services.context";
 
 const User = ({
   id,
@@ -8,11 +9,16 @@ const User = ({
   img,
   name,
   description,
-  service,
+  serviceId,
   country,
   city,
 }) => {
   const { reviews } = useContext(ReviewsContext);
+  const { services } = useContext(ServicesContext);
+
+  const serviceFound = services.find((service) => service.id === serviceId);
+  const service = serviceFound?.name;
+
   const reviewsMade = reviews.filter((review) => review.professional.id === id);
 
   const totalReviews = reviewsMade.length;

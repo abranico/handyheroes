@@ -5,10 +5,12 @@ import AddIcon from "../../components/ui/icons/AddIcon";
 import { UsersContext } from "../../context/users/users.context";
 import AddUser from "./components/addUser/AddUser";
 import Table from "./components/table/Table";
+import DashboardServices from "./components/dashboardServices/DashboardServices";
 
 const Dashboard = () => {
   const [filter, setFilter] = useState("");
   const [toggleAddUser, setToggleAddUser] = useState(false);
+  const [dashboardService, setDashboardService] = useState(false);
 
   const { users, loading } = useContext(UsersContext);
 
@@ -41,28 +43,53 @@ const Dashboard = () => {
       </header>
 
       <main className="mx-14 px-6">
-        <div className="flex justify-between items-center">
-          <div className="max-w-sm my-6 w-full flex gap-4">
-            <Input
-              type="search"
-              icon={<SearchIcon />}
-              placeholder="Buscar usuario"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-            />
-            <button
-              onClick={handleToggleAddUser}
-              className="py-2 px-4 bg-green-200 rounded hover:bg-green-400"
-            >
-              <AddIcon />
-            </button>
-          </div>
-          <p>
-            <span className="font-bold">{filteredUsers.length}</span> Usuarios
-            encontrados
-          </p>
+        <div className="flex gap-7 mt-5 text-2xl text-gray-500 uppercase bg-gray-100 p-3 justify-center">
+          <button
+            onClick={() => setDashboardService(false)}
+            className={`${
+              dashboardService ? "" : "border-b text-violet-800"
+            } border-violet-400`}
+          >
+            Usuarios
+          </button>
+          <button
+            onClick={() => setDashboardService(true)}
+            className={`${
+              dashboardService ? "border-b text-violet-800" : ""
+            } border-violet-400`}
+          >
+            Servicios
+          </button>
         </div>
-        <Table users={filteredUsers} />
+
+        {dashboardService ? (
+          <DashboardServices />
+        ) : (
+          <div>
+            <div className="flex justify-between items-center">
+              <div className="max-w-sm my-6 w-full flex gap-4">
+                <Input
+                  type="search"
+                  icon={<SearchIcon />}
+                  placeholder="Buscar usuario"
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value)}
+                />
+                <button
+                  onClick={handleToggleAddUser}
+                  className="py-2 px-4 bg-green-200 rounded hover:bg-green-400"
+                >
+                  <AddIcon />
+                </button>
+              </div>
+              <p>
+                <span className="font-bold">{filteredUsers.length}</span>{" "}
+                Usuarios encontrados
+              </p>
+            </div>
+            <Table users={filteredUsers} />
+          </div>
+        )}
       </main>
     </>
   );

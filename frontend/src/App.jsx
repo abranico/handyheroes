@@ -12,6 +12,7 @@ import { AuthenticationContextProvider } from "./context/authentication/authenti
 import Protected from "./routes/Protected";
 import { ReviewsContextProvider } from "./context/reviews/reviews.context";
 import { UsersContextProvider } from "./context/users/users.context";
+import { ServicesContextProvider } from "./context/services/services.context";
 
 function App() {
   const router = createBrowserRouter([
@@ -61,9 +62,11 @@ function App() {
     <>
       <AuthenticationContextProvider>
         <UsersContextProvider>
-          <ReviewsContextProvider>
-            <RouterProvider router={router} />
-          </ReviewsContextProvider>
+          <ServicesContextProvider>
+            <ReviewsContextProvider>
+              <RouterProvider router={router} />
+            </ReviewsContextProvider>
+          </ServicesContextProvider>
         </UsersContextProvider>
       </AuthenticationContextProvider>
     </>

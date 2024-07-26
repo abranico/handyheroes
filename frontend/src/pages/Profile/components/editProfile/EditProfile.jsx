@@ -1,8 +1,11 @@
 import { useContext, useState } from "react";
 import { UsersContext } from "../../../../context/users/users.context";
+import { ServicesContext } from "../../../../context/services/services.context";
 
 const EditProfile = ({ toggle, id, role, handleSaveEdit }) => {
   const { users } = useContext(UsersContext);
+  const { services } = useContext(ServicesContext);
+
   const user = users.find((user) => user.id === id);
 
   const [newUser, setNewUser] = useState({
@@ -15,7 +18,7 @@ const EditProfile = ({ toggle, id, role, handleSaveEdit }) => {
     city: user.city,
     description: user.description,
     phoneNumber: user.phoneNumber,
-    service: user.service,
+    serviceId: user.serviceId,
   });
 
   const [error, setError] = useState("");
@@ -24,7 +27,7 @@ const EditProfile = ({ toggle, id, role, handleSaveEdit }) => {
     const { name, value } = e.target;
     setNewUser((prevUser) => ({
       ...prevUser,
-      [name]: value,
+      [name]: name === "serviceId" ? parseInt(value) : value,
     }));
   };
 
@@ -40,12 +43,12 @@ const EditProfile = ({ toggle, id, role, handleSaveEdit }) => {
       return setError("Debes completar los datos requeridos");
     if (
       users.find((user) => user.username === newUser.username) &&
-      user.username != newUser.username
+      user.username !== newUser.username
     )
       return setError("Ya hay una cuenta con ese nombre de usuario");
     if (
       users.find((user) => user.email === newUser.email) &&
-      user.email != newUser.email
+      user.email !== newUser.email
     )
       return setError("Ya hay una cuenta con ese correo");
 
@@ -131,7 +134,7 @@ const EditProfile = ({ toggle, id, role, handleSaveEdit }) => {
               <>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
-                    Pais
+                    País
                   </label>
                   <input
                     type="text"
@@ -155,7 +158,7 @@ const EditProfile = ({ toggle, id, role, handleSaveEdit }) => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
-                    Numero de telefono
+                    Número de teléfono
                   </label>
                   <input
                     type="text"
@@ -169,13 +172,18 @@ const EditProfile = ({ toggle, id, role, handleSaveEdit }) => {
                   <label className="block text-sm font-medium text-gray-700">
                     Servicio
                   </label>
-                  <input
-                    type="text"
-                    name="service"
-                    value={newUser.service}
+                  <select
+                    name="serviceId"
+                    value={newUser.serviceId}
                     onChange={handleChange}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                  />
+                  >
+                    {services.map((service) => (
+                      <option key={service.id} value={service.id}>
+                        {service.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">

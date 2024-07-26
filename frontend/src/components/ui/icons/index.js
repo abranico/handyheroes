@@ -9,3 +9,4 @@ export { default as RestoreIcon } from "./RestoreIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
 export { default as ArrowDown } from "./ArrowDown";
 export { default as ArrowRight } from "./ArrowRight";
+export { default as AddIcon } from "./AddIcon";

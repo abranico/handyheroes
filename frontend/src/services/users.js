@@ -37,6 +37,7 @@ export const getUserByUsername = async (username) => {
 
 export const userPartialUpdate = async (id, partialData) => {
   try {
+    console.log({ edit: partialData });
     const response = await fetch(`${API_URL}/${id}`, {
       method: "PATCH",
       headers: {

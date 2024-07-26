@@ -3,12 +3,14 @@ import { Input, Select } from "../../components";
 import { MapIcon, SearchIcon } from "../../components/ui/icons";
 import { UsersContext } from "../../context/users/users.context";
 import User from "./components/user/User";
+import { ServicesContext } from "../../context/services/services.context";
 
 const Services = () => {
   const { users, loading, error } = useContext(UsersContext);
+  const { services: servicesFromApi } = useContext(ServicesContext);
 
   const [filters, setFilters] = useState({
-    service: "",
+    serviceId: null,
     professional: "",
     location: "",
   });
@@ -20,16 +22,18 @@ const Services = () => {
         user.description &&
         user.city &&
         user.country &&
-        user.service &&
+        user.serviceId &&
+        servicesFromApi.find((service) => service.id === user.serviceId) &&
         user.status
     );
-  }, [users]);
+  }, [users, servicesFromApi]);
 
   const filteredProfessionals = useMemo(() => {
     return professionals.filter((prof) => {
-      const matchesService = filters.service
-        ? prof.service.toLowerCase() === filters.service.toLowerCase()
-        : true;
+      const matchesService =
+        filters.serviceId !== null
+          ? prof.serviceId === filters.serviceId
+          : true;
 
       const matchesProfessional = filters.professional
         ? (prof.firstName + " " + prof.lastName)
@@ -46,26 +50,22 @@ const Services = () => {
     });
   }, [professionals, filters]);
 
-  const services = useMemo(() => {
-    return [...new Set(professionals.map((user) => user.service))];
-  }, [professionals]);
-
   return (
     <>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      <header className="px-6 py-11  text-white bg-gradient-to-r from-cyan-600 to-blue-600 ">
+      <header className="px-6 py-11 text-white bg-gradient-to-r from-cyan-600 to-blue-600">
         <h1 className="mx-14 text-4xl font-bold">
           Busca el profesional y servicio deseado.
         </h1>
         <div className="mx-14 flex mt-9 py-5 gap-7">
           <Select
             type="combobox"
-            options={services}
+            options={servicesFromApi}
             placeholder="Buscar oficio"
             icon={<SearchIcon />}
             setFilters={setFilters}
-            value={filters.service}
+            value={filters.serviceId}
           />
 
           <Input
@@ -106,7 +106,7 @@ const Services = () => {
                 img={user.profileImg}
                 name={user.firstName + " " + user.lastName}
                 description={user.description}
-                service={user.service}
+                serviceId={user.serviceId}
                 country={user.country}
                 city={user.city}
               />

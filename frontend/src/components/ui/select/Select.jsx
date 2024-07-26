@@ -10,13 +10,13 @@ import { useState } from "react";
 
 const Select = ({ options, placeholder, icon, setFilters }) => {
   const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(null);
 
   const filteredOptions =
     query === ""
       ? options
       : options.filter((option) => {
-          return option?.toLowerCase().includes(query.toLowerCase());
+          return option.name?.toLowerCase().includes(query.toLowerCase());
         });
 
   return (
@@ -25,10 +25,17 @@ const Select = ({ options, placeholder, icon, setFilters }) => {
         value={selected}
         onChange={(value) => {
           setSelected(value);
-          setFilters((prevState) => ({
-            ...prevState,
-            service: value,
-          }));
+          if (value) {
+            setFilters((prevState) => ({
+              ...prevState,
+              serviceId: value.id,
+            }));
+          } else {
+            setFilters((prevState) => ({
+              ...prevState,
+              serviceId: null,
+            }));
+          }
         }}
         onClose={() => setQuery("")}
       >
@@ -38,12 +45,12 @@ const Select = ({ options, placeholder, icon, setFilters }) => {
               "w-full appearance-none border border-gray-300 rounded py-4 px-3 text-sm text-gray-700",
               `focus:outline-none focus:border-gray-500 ${icon ? "pl-10" : ""}`
             )}
-            displayValue={(option) => option}
+            displayValue={(option) => (option ? option.name : "")}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={placeholder}
           />
           {icon && (
-            <span className="absolute top-0 bottom-0 left-0  flex items-center ml-3">
+            <span className="absolute top-0 bottom-0 left-0 flex items-center ml-3">
               {icon}
             </span>
           )}
@@ -72,9 +79,9 @@ const Select = ({ options, placeholder, icon, setFilters }) => {
             "focus:outline-none text-black"
           )}
         >
-          {filteredOptions.map((option, index) => (
+          {filteredOptions.map((option) => (
             <ComboboxOption
-              key={index}
+              key={option.id}
               value={option}
               className={({ active }) =>
                 clsx(
@@ -91,7 +98,7 @@ const Select = ({ options, placeholder, icon, setFilters }) => {
                       selected ? "font-medium" : "font-normal"
                     )}
                   >
-                    {option}
+                    {option.name}
                   </span>
                   {selected && (
                     <span

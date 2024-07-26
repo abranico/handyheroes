@@ -8,6 +8,7 @@ import {
 import { AuthenticationContext } from "../../../../context/authentication/authentication.context";
 import Review from "../review/Review";
 import MakeReview from "../makeReview/MakeReview";
+import { ServicesContext } from "../../../../context/services/services.context";
 
 const ProfessionalProfile = ({
   id,
@@ -16,7 +17,7 @@ const ProfessionalProfile = ({
   lastName,
   username,
   rating,
-  service,
+  serviceId,
   location,
   description,
   number,
@@ -26,7 +27,8 @@ const ProfessionalProfile = ({
   roleAuth,
 }) => {
   const { user } = useContext(AuthenticationContext);
-
+  const { services } = useContext(ServicesContext);
+  const service = services.find((service) => service.id === serviceId)?.name;
   const [toggleMakeReview, setToggleMakeReview] = useState(false);
 
   const isOwner = user.username === username;

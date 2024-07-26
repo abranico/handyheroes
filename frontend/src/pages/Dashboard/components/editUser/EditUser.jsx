@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import { UsersContext } from "../../../../context/users/users.context";
+import { ServicesContext } from "../../../../context/services/services.context";
 
 const EditUser = ({ toggle, id }) => {
   const { users, handleUpdate } = useContext(UsersContext);
+  const { services } = useContext(ServicesContext);
   const user = users.find((user) => user.id === id);
 
   const [newUser, setNewUser] = useState({
@@ -16,7 +18,7 @@ const EditUser = ({ toggle, id }) => {
     city: user.city,
     description: user.description,
     phoneNumber: user.phoneNumber,
-    service: user.service,
+    serviceId: user.serviceId,
   });
 
   const [error, setError] = useState("");
@@ -25,7 +27,7 @@ const EditUser = ({ toggle, id }) => {
     const { name, value } = e.target;
     setNewUser((prevUser) => ({
       ...prevUser,
-      [name]: value,
+      [name]: name === "serviceId" ? parseInt(value) : value,
     }));
   };
 
@@ -55,156 +57,159 @@ const EditUser = ({ toggle, id }) => {
         <header className="p-5 bg-blue-600 text-white rounded-t-lg text-center">
           <h2 className="text-2xl font-semibold">Editar Usuario</h2>
         </header>
-        <main className="p-6 overflow-y-auto h-[400px] ">
-          <form
-            onSubmit={handleSubmit}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
-          >
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Nombre *
-              </label>
-              <input
-                type="text"
-                required
-                name="firstName"
-                value={newUser.firstName}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Apellido *
-              </label>
-              <input
-                type="text"
-                required
-                name="lastName"
-                value={newUser.lastName}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
+        <main className="p-6 w-full">
+          <form onSubmit={handleSubmit} className="">
+            <div className="overflow-y-auto h-[400px] grid grid-cols-1 md:grid-cols-3 gap-6 w-full p-3">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Nombre *
+                </label>
+                <input
+                  type="text"
+                  required
+                  name="firstName"
+                  value={newUser.firstName}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Apellido *
+                </label>
+                <input
+                  type="text"
+                  required
+                  name="lastName"
+                  value={newUser.lastName}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email *
-              </label>
-              <input
-                type="email"
-                required
-                name="email"
-                value={newUser.email}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  required
+                  name="email"
+                  value={newUser.email}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Contraseña *
+                </label>
+                <input
+                  type="password"
+                  required
+                  name="password"
+                  value={newUser.password}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Imagen URL
+                </label>
+                <input
+                  type="text"
+                  name="profileImg"
+                  value={newUser.profileImg}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                />
+              </div>
+              <div className="col-span-3">
+                <label className="block text-sm font-medium text-gray-700">
+                  Rol
+                </label>
+                <select
+                  name="role"
+                  value={newUser.role}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                >
+                  <option value="client">Client</option>
+                  <option value="professional">Professional</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              {newUser.role === "professional" && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Pais
+                    </label>
+                    <input
+                      type="text"
+                      name="country"
+                      value={newUser.country}
+                      onChange={handleChange}
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Ciudad
+                    </label>
+                    <input
+                      type="text"
+                      name="city"
+                      value={newUser.city}
+                      onChange={handleChange}
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Numero de telefono
+                    </label>
+                    <input
+                      type="text"
+                      name="phoneNumber"
+                      value={newUser.phoneNumber}
+                      onChange={handleChange}
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Servicio
+                    </label>
+                    <select
+                      name="serviceId"
+                      value={newUser.serviceId}
+                      onChange={handleChange}
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    >
+                      {services.map((service) => (
+                        <option key={service.id} value={service.id}>
+                          {service.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="col-span-3">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Description
+                    </label>
+                    <textarea
+                      name="description"
+                      value={newUser.description}
+                      onChange={handleChange}
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </>
+              )}
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Contraseña *
-              </label>
-              <input
-                type="password"
-                required
-                name="password"
-                value={newUser.password}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Imagen URL
-              </label>
-              <input
-                type="text"
-                name="profileImg"
-                value={newUser.profileImg}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              />
-            </div>
-            <div className="col-span-3">
-              <label className="block text-sm font-medium text-gray-700">
-                Rol
-              </label>
-              <select
-                name="role"
-                value={newUser.role}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-              >
-                <option value="client">Client</option>
-                <option value="professional">Professional</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
-            {newUser.role === "professional" && (
-              <>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Pais
-                  </label>
-                  <input
-                    type="text"
-                    name="country"
-                    value={newUser.country}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Ciudad
-                  </label>
-                  <input
-                    type="text"
-                    name="city"
-                    value={newUser.city}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Numero de telefono
-                  </label>
-                  <input
-                    type="text"
-                    name="phoneNumber"
-                    value={newUser.phoneNumber}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Servicio
-                  </label>
-                  <input
-                    type="text"
-                    name="service"
-                    value={newUser.service}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                  />
-                </div>
-                <div className="col-span-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Description
-                  </label>
-                  <textarea
-                    name="description"
-                    value={newUser.description}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-                    rows="3"
-                  ></textarea>
-                </div>
-              </>
-            )}
-
             <footer className="flex justify-between p-4 space-x-3 rounded-b-lg w-full col-span-3 items-center">
               <div>{error && <p className="text-red-400">{error}</p>}</div>
               <div className="flex gap-2">
