@@ -12,7 +12,8 @@
       "PUT",
       "PATCH",
       "DELETE"
-    ]
+    ],
+    "services": []
   },
   "users": [
     {
@@ -29,7 +30,7 @@
       "city": null,
       "description": null,
       "phoneNumber": null,
-      "service": null,
+      "serviceId": null,
       "modifiedAt": 1721339758847
     },
     {
@@ -46,7 +47,7 @@
       "country": null,
       "city": null,
       "description": null,
-      "service": null,
+      "serviceId": null,
       "modifiedAt": 1721416511611
     },
     {
@@ -63,7 +64,7 @@
       "country": null,
       "city": null,
       "description": null,
-      "service": null,
+      "serviceId": null,
       "modifiedAt": 1721415470852
     },
     {
@@ -81,7 +82,7 @@
       "country": "Argentina",
       "city": "Rosario",
       "description": "Soy un albañil con experiencia en reformas y construcciones.",
-      "service": "Albañil",
+      "serviceId": 1,
       "modifiedAt": 1721415271088
     },
     {
@@ -98,7 +99,7 @@
       "country": null,
       "city": null,
       "description": null,
-      "service": null
+      "serviceId": null
     },
     {
       "id": 6,
@@ -114,8 +115,8 @@
       "country": "Argentina",
       "city": "Rosario",
       "description": "Soy un carpintero especializado en muebles a medida.",
-      "service": "Carpintero",
-      "modifiedAt": 1721337454468
+      "serviceId": 3,
+      "modifiedAt": 1721955531535
     },
     {
       "id": 7,
@@ -131,7 +132,7 @@
       "country": null,
       "city": null,
       "description": null,
-      "service": null
+      "serviceId": null
     },
     {
       "id": 8,
@@ -147,7 +148,8 @@
       "country": "Argentina",
       "city": "Rosario",
       "description": "Soy un electricista con más de 10 años de experiencia.",
-      "service": "Electricista"
+      "serviceId": 4,
+      "modifiedAt": 1721954993053
     },
     {
       "id": 9,
@@ -163,7 +165,7 @@
       "country": null,
       "city": null,
       "description": null,
-      "service": null
+      "serviceId": null
     },
     {
       "id": 10,
@@ -179,10 +181,11 @@
       "country": "Argentina",
       "city": "Rosario",
       "description": "Soy un plomero con amplia experiencia en instalaciones y reparaciones.",
-      "service": "Plomeroo",
+      "serviceId": 4,
       "modifiedAt": 1721469442625
     },
     {
+      "id": 11,
       "firstName": "Ramiro",
       "lastName": "Muñoz",
       "username": "ramamunoz",
@@ -195,10 +198,9 @@
       "description": "",
       "phoneNumber": "",
       "status": true,
-      "service": "",
+      "serviceId": null,
       "createdAt": 1721420926430,
-      "modifiedAt": 1721422789984,
-      "id": 11
+      "modifiedAt": 1721422789984
     },
     {
       "id": 12,
@@ -213,7 +215,7 @@
       "city": "",
       "description": "",
       "phoneNumber": "",
-      "service": "",
+      "serviceId": null,
       "status": true,
       "createdAt": 1721433415361,
       "modifiedAt": 1721433415361
@@ -231,7 +233,7 @@
       "city": "",
       "description": "",
       "phoneNumber": "",
-      "service": "",
+      "serviceId": null,
       "status": true,
       "createdAt": 1721433852317,
       "modifiedAt": 1721433852317
@@ -249,7 +251,7 @@
       "city": "",
       "description": "",
       "phoneNumber": "",
-      "service": "",
+      "serviceId": null,
       "status": true,
       "createdAt": 1721433994028,
       "modifiedAt": 1721433994028
@@ -267,10 +269,29 @@
       "city": "",
       "description": "",
       "phoneNumber": "",
-      "service": "",
+      "serviceId": null,
       "status": true,
       "createdAt": 1721467477187,
       "modifiedAt": 1721467477187
+    },
+    {
+      "id": 27,
+      "firstName": "Nicolás",
+      "lastName": "Abramovich",
+      "username": "nicoabra",
+      "email": "nicoabra@gmail.com",
+      "password": "password123",
+      "profileImg": "",
+      "role": "professional",
+      "country": "Argentina",
+      "city": "Rosario",
+      "description": "Pintor",
+      "phoneNumber": "",
+      "service": "",
+      "status": true,
+      "createdAt": 1721968373045,
+      "modifiedAt": 1721969289932,
+      "serviceId": null
     }
   ],
   "reviews": [
@@ -493,6 +514,25 @@
       "createdAt": 1721432159187,
       "modifiedAt": 1721432159187,
       "id": 11
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "Albañil"
+    },
+    {
+      "id": 2,
+      "name": "Carpintero"
+    },
+    {
+      "id": 3,
+      "name": "Electricista"
+    },
+    {
+      "name": "Plomero",
+      "modifiedAt": 1721967926288,
+      "id": 4
     }
   ]
 }
