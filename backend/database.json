@@ -1,18 +1,7 @@
 {
   "protectedResources": {
-    "users": [
-      "GET",
-      "POST",
-      "PUT",
-      "PATCH",
-      "DELETE"
-    ],
-    "reviews": [
-      "POST",
-      "PUT",
-      "PATCH",
-      "DELETE"
-    ],
+    "users": ["POST", "PUT", "PATCH", "DELETE"],
+    "reviews": ["POST", "PUT", "PATCH", "DELETE"],
     "services": []
   },
   "users": [
