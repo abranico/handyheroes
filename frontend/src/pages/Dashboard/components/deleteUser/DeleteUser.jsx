@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { UsersContext } from "../../../../context/users/users.context";
 
 const DeleteUser = ({ id, toggle, username }) => {
-  const { handleDeleteUser } = useContext(UsersContext);
+  const { handleDeleteUser, handleUpdate } = useContext(UsersContext);
 
   const onConfirm = () => {
     handleDeleteUser(id);
+    handleUpdate(id, { status: false });
     toggle();
   };
 
