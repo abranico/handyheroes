@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "install-and-run": "npm install && npm install --prefix ../backend && concurrently \"npm run dev\" \"npm run dev --prefix ../backend\"",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
