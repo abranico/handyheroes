@@ -30,8 +30,8 @@ const DashboardServices = () => {
       {toggleAddService && <AddService toggle={handleToggleAddService} />}
 
       <div>
-        <div className="flex justify-between items-center">
-          <div className="max-w-sm my-6 w-full flex gap-4">
+        <div className="flex flex-wrap justify-between items-center">
+          <div className="max-w-sm my-6 w-full flex  gap-4">
             <Input
               type="search"
               icon={<SearchIcon />}

@@ -43,7 +43,7 @@ const Dashboard = () => {
       </header>
 
       <main className="mx-14 px-6">
-        <div className="flex gap-7 mt-5 text-2xl text-gray-500 uppercase bg-gray-100 p-3 justify-center">
+        <div className="flex flex-wrap gap-7 mt-5 text-2xl text-gray-500 uppercase bg-gray-100 p-3 justify-center">
           <button
             onClick={() => setDashboardService(false)}
             className={`${
@@ -66,8 +66,8 @@ const Dashboard = () => {
           <DashboardServices />
         ) : (
           <div>
-            <div className="flex justify-between items-center">
-              <div className="max-w-sm my-6 w-full flex gap-4">
+            <div className="flex justify-between flex-wrap  items-center">
+              <div className="max-w-sm my-6 w-full flex   gap-4">
                 <Input
                   type="search"
                   icon={<SearchIcon />}
