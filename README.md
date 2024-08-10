@@ -1,8 +1,6 @@
+**Handy Heroes** 
 
-
-# Handy Heroes
-
-**Handy Heroes** es un proyecto de trabajo práctico para la universidad que se centra en cumplir con una serie de requisitos específicos para demostrar habilidades en el desarrollo con React.
+es un proyecto de trabajo práctico para la universidad que se centra en cumplir con una serie de requisitos específicos para demostrar habilidades en el desarrollo con React.
 
 #### El proyecto se centra en cumplir los siguientes requisitos:
 
@@ -52,3 +50,13 @@ Este comando realiza lo siguiente:
 - Instala las dependencias en la carpeta `frontend` y `backend`.
 - Ejecuta `npm run dev` en la carpeta `frontend` y `backend` simultáneamente.
 
+## Vistas
+
+<img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/93cfcf88-5604-467b-945b-c8d8f5212dc5">
+<img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/02b933d8-bcf9-4d0e-b44d-d5d9b63cef20">
+<img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/cd695d09-8df2-4062-ab5b-c144dfe261b4">
+<img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/6de722a0-8c15-4823-a9b2-ff28414b4717">
+<img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/2deddd84-4cfe-4ae4-9d03-85d90435843c">
+<img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/36b21b54-b9b9-40e5-b3a4-b4311aa68867">
+<img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/1c7a1504-4d8c-4534-aed8-e1cee7a5364a">
+<img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/fefceb96-7490-42dd-a3ef-77f120d9b1a1">
