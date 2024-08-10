@@ -52,26 +52,26 @@ const ProfessionalProfile = ({
         />
       )}
       <div className="h-[180px] text-white bg-gradient-to-r from-cyan-600 to-blue-600"></div>
-      <main className="px-5 py-2 flex flex-col gap-3 pb-6 max-w-4xl mx-auto ">
-        <header className=" flex items-center gap-5 ">
+      <main className="px-5 py-2 flex flex-col gap-3 pb-6 max-w-4xl mx-auto">
+        <header className="flex flex-col md:flex-row items-center gap-5">
           <div className="h-[220px] shadow-md max-w-[220px] w-full rounded-full border-4 overflow-hidden -mt-16 border-white bg-white">
             <img
               src={image || "/placeholder-user.jpg"}
               className="w-full h-full rounded-full object-center object-cover"
             />
           </div>
-          <div className="-mt-10 flex justify-between w-full">
-            <div>
-              <h3 className="text-3xl text-slate-900 relative font-bold leading-6">
+          <div className="-mt-10 flex flex-col md:flex-row justify-between w-full">
+            <div className="text-center md:text-left">
+              <h3 className="text-3xl text-slate-900 relative font-bold leading-6 mt-5 md:mt-0">
                 {firstName} {lastName}
               </h3>
-              <p className="text-mdm text-gray-600">@{username}</p>
+              <p className="text-md text-gray-600">@{username}</p>
             </div>
             {isOwner ? (
               <button
                 onClick={() => setIsEditing(true)}
                 type="button"
-                className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="w-full md:w-32 inline-flex cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300 mt-3 md:mt-0"
               >
                 EDITAR
               </button>
@@ -80,7 +80,7 @@ const ProfessionalProfile = ({
               roleAuth == "client" && (
                 <button
                   type="button"
-                  className="w-32 inline-flex  cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  className="w-full md:w-32 inline-flex cursor-pointer select-none appearance-none items-center justify-center space-x-1 rounded border border-gray-200 bg-blue-700 px-3 py-2 text-sm font-medium text-white transition hover:border-blue-300 hover:bg-blue-600 active:bg-blue-700 focus:blue-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300 mt-3 md:mt-0"
                   onClick={handleToggleMakeReview}
                 >
                   Dejar reseña
@@ -90,8 +90,8 @@ const ProfessionalProfile = ({
           </div>
         </header>
 
-        <div className="flex  gap-5  -mt-16">
-          <div className="max-w-[220px] w-full "></div>
+        <div className="flex flex-col md:flex-row gap-5 md:-mt-16 -mt-6">
+          <div className="max-w-[220px] w-full"></div>
           <div className="pb-10 w-full">
             <section className="flex flex-col mb-5 gap-5 text-neutral-6">
               <p className="flex gap-3">
@@ -104,32 +104,38 @@ const ProfessionalProfile = ({
                     )
                   )}
 
-                  <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full "></span>
+                  <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full"></span>
                   <a
                     href="#reviews"
-                    className="text-sm font-medium text-gray-900 underline hover:no-underline "
+                    className="text-sm font-medium text-gray-900 underline hover:no-underline"
                   >
                     {reviews.length} reviews
                   </a>
                 </div>
               </p>
 
-              <p className="flex items-center gap-2">
-                <MapIcon />
-                {location}
-              </p>
+              {location && (
+                <p className="flex items-center gap-2">
+                  <MapIcon />
+                  {location}
+                </p>
+              )}
+
               <span className="text-2xl p-3 text-neutral-800 border rounded-md shadow-sm">
                 {service}
               </span>
             </section>
             <section className="border min-h-32 max-h-72 overflow-auto w-full p-3 shadow-sm rounded-md">
-              <p className="text-md ">{description}</p>
+              <p className="text-md">{description}</p>
             </section>
-            <section className="border flex gap-10  p-3 mt-5 min-h-20 shadow-sm rounded-md">
-              <p className="flex items-center gap-2 text-sm">
-                <PhoneIcon />
-                {number}
-              </p>
+            <section className="border flex flex-col md:flex-row gap-10 p-3 mt-5 min-h-20 shadow-sm rounded-md">
+              {number && (
+                <p className="flex items-center gap-2 text-sm">
+                  <PhoneIcon />
+                  {number}
+                </p>
+              )}
+
               <p className="flex items-center gap-2 text-sm">
                 <EmailIcon />
                 {email}

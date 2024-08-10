@@ -58,45 +58,50 @@ const Services = () => {
         <h1 className="mx-14 text-4xl font-bold">
           Busca el profesional y servicio deseado.
         </h1>
-        <div className="mx-14 flex mt-9 py-5 gap-7">
-          <Select
-            type="combobox"
-            options={servicesFromApi}
-            placeholder="Buscar oficio"
-            icon={<SearchIcon />}
-            setFilters={setFilters}
-            value={filters.serviceId}
-          />
-
-          <Input
-            type="search"
-            placeholder="Buscar profesional"
-            value={filters.professional}
-            onChange={(e) =>
-              setFilters((prevState) => ({
-                ...prevState,
-                professional: e.target.value,
-              }))
-            }
-            icon={<SearchIcon />}
-          />
-          <Input
-            type="search"
-            placeholder="Ex: New York"
-            icon={<MapIcon />}
-            value={filters.location}
-            onChange={(e) =>
-              setFilters((prevState) => ({
-                ...prevState,
-                location: e.target.value,
-              }))
-            }
-          />
+        <div className="mx-14 flex flex-col md:flex-row items-center  mt-9 py-5 gap-7">
+          <div className="max-w-80 w-full">
+            <Select
+              type="combobox"
+              options={servicesFromApi}
+              placeholder="Buscar oficio"
+              icon={<SearchIcon />}
+              setFilters={setFilters}
+              value={filters.serviceId}
+            />
+          </div>
+          <div className="max-w-80 w-full">
+            <Input
+              type="search"
+              placeholder="Buscar profesional"
+              value={filters.professional}
+              onChange={(e) =>
+                setFilters((prevState) => ({
+                  ...prevState,
+                  professional: e.target.value,
+                }))
+              }
+              icon={<SearchIcon />}
+            />
+          </div>
+          <div className="max-w-80 w-full">
+            <Input
+              type="search"
+              placeholder="Ex: New York"
+              icon={<MapIcon />}
+              value={filters.location}
+              onChange={(e) =>
+                setFilters((prevState) => ({
+                  ...prevState,
+                  location: e.target.value,
+                }))
+              }
+            />
+          </div>
         </div>
       </header>
 
       <main>
-        <ul className="mx-14 px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+        <ul className="mt-5 md:mx-14 px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10 place-items-center">
           {filteredProfessionals.length > 0 &&
             filteredProfessionals.map((user) => (
               <User

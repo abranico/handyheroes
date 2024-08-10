@@ -118,8 +118,8 @@ const Register = () => {
 
   return (
     <>
-      <header className=" mx-14 items-center p-6">
-        <nav className="flex justify-between">
+      <header className="md:mx-14 p-6 flex justify-center md:justify-between">
+        <nav className="flex flex-col md:flex-row gap-5 md:gap-0 w-full justify-between items-center">
           <a className="flex items-center cursor-pointer hover:opacity-60">
             <img
               src="logo.png"
@@ -130,11 +130,11 @@ const Register = () => {
               HandyHeroes
             </h1>
           </a>
-          <div className="flex gap-5 items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-center mt-4 lg:mt-0">
             <p className="text-gray-500 select-none">¿Ya eres usuario?</p>
             <Link
               to="/login"
-              className="border border-black px-5 py-1 rounded hover:opacity-60 "
+              className="border border-black px-5 py-1 rounded hover:opacity-60"
             >
               Iniciar sesión
             </Link>

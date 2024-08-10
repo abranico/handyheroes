@@ -22,17 +22,18 @@ const Profile = () => {
     return users.find((user) => user.username === username);
   }, [users, username]);
 
-  if (!user) return <NotFound />;
-
-  const fullname = user.firstName + " " + user.lastName;
-
-  const location = user.country + ", " + user.city;
-
   const userReviews = useMemo(() => {
     return user.role === "professional"
       ? reviews.filter((review) => review.professional.id === user.id)
       : reviews.filter((review) => review.client.id === user.id);
   }, [reviews, user]);
+
+  if (!user) return <NotFound />;
+
+  const fullname = user.firstName + " " + user.lastName;
+
+  const location =
+    user.country && user.city ? user.country + ", " + user.city : "";
 
   const rating =
     userReviews.reduce((acc, review) => acc + review.rating, 0) /

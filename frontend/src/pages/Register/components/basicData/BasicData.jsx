@@ -46,7 +46,7 @@ const BasicData = ({
             </span>
           )}
         </div>
-        <div className="mb-4 flex gap-3">
+        <div className="mb-4 flex flex-col md:flex-row gap-3">
           <div className="w-full">
             <Input
               placeholder="Nombre"

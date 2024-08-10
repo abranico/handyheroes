@@ -34,9 +34,9 @@ const User = ({
   return (
     <Link
       to={`/user/${username}`}
-      className="max-h-[240px] h-full w-full max-w-[600px] rounded-lg border shadow transition hover:shadow-lg flex my-5 text-gray-800 bg-white hover:scale-105"
+      className=" h-full  max-w-[600px] rounded-lg border shadow transition hover:shadow-lg flex flex-col md:flex-row my-5 text-gray-800 bg-white hover:scale-105"
     >
-      <div className="w-[240px] h-full overflow-hidden rounded-l-lg">
+      <div className="mx-auto w-[240px] h-full overflow-hidden rounded-l-lg">
         <img
           src={img || "/placeholder-user.jpg"}
           alt={`${name}'s profile`}
@@ -52,14 +52,14 @@ const User = ({
             {description}
           </p>
         </div>
-        <div className="flex flex-col justify-between  mt-4 gap-1">
+        <div className="flex flex-col justify-between  gap-1">
           <p className="text-xl overflow-ellipsis whitespace-nowrap overflow-hidden max-w-72">
             {service}
           </p>
           <p className="text-sm text-gray-500 overflow-ellipsis whitespace-nowrap overflow-hidden max-w-72">
             {country}, {city}
           </p>
-          <div className="flex justify-between  gap-4 text-gray-500">
+          <div className="flex justify-between flex-wrap  gap-4 text-gray-500">
             <span>
               {totalReviews} Reseña{totalReviews > 1 && "s"}
             </span>

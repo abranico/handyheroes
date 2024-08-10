@@ -22,33 +22,36 @@ const ChooseRol = ({
         </p>
       )}
       <div className="mt-12 flex justify-between w-full">
-        <button
-          onClick={() => onSetRol("client")}
-          className={`flex flex-col items-center hover:opacity-60 p-2 ${
-            rol === "client" ? "outline" : ""
-          } `}
-        >
-          <img
-            className="max-w-52 h-full object-cover"
-            src="/cliente-logo.png"
-            alt=""
-          />
-          <span className="font-bold text-xl">Cliente</span>
-        </button>
-        <button
-          onClick={() => onSetRol("professional")}
-          className={`flex flex-col items-center cursor-pointer hover:opacity-60 p-2 ${
-            rol === "professional" ? "outline" : ""
-          } `}
-        >
-          <img
-            className="max-w-52 h-auto "
-            src="/profesional-logo.png"
-            alt=""
-          />
-          <span className="font-bold text-xl">Profesional</span>
-        </button>
+        <div className="mt-12 flex justify-between w-full">
+          <button
+            onClick={() => onSetRol("client")}
+            className={`flex-grow flex flex-col items-center hover:opacity-60 p-2 transition-all duration-200 ${
+              rol === "client" ? "outline" : ""
+            } outline-1`}
+          >
+            <img
+              className="w-full max-w-[200px] h-full object-cover"
+              src="/cliente-logo.png"
+              alt=""
+            />
+            <span className="font-bold text-xl">Cliente</span>
+          </button>
+          <button
+            onClick={() => onSetRol("professional")}
+            className={`flex-grow flex flex-col items-center cursor-pointer hover:opacity-60 p-2 transition-all duration-200 ${
+              rol === "professional" ? "outline " : ""
+            } outline-1   `}
+          >
+            <img
+              className="w-full max-w-[200px] h-auto"
+              src="/profesional-logo.png"
+              alt=""
+            />
+            <span className="font-bold text-xl">Profesional</span>
+          </button>
+        </div>
       </div>
+
       <div className="mt-5 ">
         <button
           onClick={handleSubmit}

@@ -7,18 +7,20 @@ const Landing = () => {
   if (user) return <Navigate to="/services" replace />;
   return (
     <div className="flex flex-col h-screen ">
-      <header className="flex justify-between mx-14 items-center p-6 ">
+      <header className="flex justify-between flex-wrap md:mx-14 items-center p-6">
         <Link to="/" className="flex items-center hover:opacity-70">
           <img
             src="logo.png"
             alt="HandyHeroes Logo"
             className="w-8 rounded-full"
           />
-          <h1 className="text-2xl font-bold text-blue-900 ml-2">HandyHeroes</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-blue-900 ml-2">
+            HandyHeroes
+          </h1>
         </Link>
         <Link
           to="/login"
-          className="bg-blue-500 text-white px-10 py-2 rounded-lg hover:bg-blue-600 font-bold"
+          className="bg-blue-500 text-white px-6 md:px-10 py-2 rounded-lg hover:bg-blue-600 font-bold mt-4 md:mt-0"
         >
           Unirse
         </Link>
@@ -35,16 +37,16 @@ const Landing = () => {
               dispuestos a brindarla: HandyHeroes, donde se encuentran la
               demanda y la oferta de servicios domésticos.
             </p>
-            <div className="mt-6">
+            <div className="flex flex-wrap  gap-2 mt-6">
               <Link
                 to="/login"
-                className="bg-blue-500 text-white px-6 py-3 rounded-md mr-2 transition duration-300 hover:bg-blue-600 font-bold"
+                className="bg-blue-500 text-white text-center max-w-56 min-w-56    px-6 py-3 rounded-md  transition duration-300 hover:bg-blue-600 font-bold"
               >
                 BUSCAR PROFESIONAL
               </Link>
               <Link
                 to="/login"
-                className="bg-purple-500 text-white px-6 py-3 rounded-md ml-2 transition duration-300 hover:bg-purple-600 font-bold"
+                className="bg-purple-500 text-white text-center  max-w-56 min-w-56 px-6 py-3 rounded-md  transition duration-300 hover:bg-purple-600 font-bold"
               >
                 OFRECER SERVICIO
               </Link>
@@ -54,7 +56,7 @@ const Landing = () => {
             <img
               src="logo.png"
               alt="Handy Illustration"
-              className="max-w-80 h-auto rounded-3xl"
+              className="max-w-80 h-auto rounded-3xl hidden md:block"
             />
           </div>
         </div>
