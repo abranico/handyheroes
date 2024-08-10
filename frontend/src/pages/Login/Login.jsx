@@ -36,8 +36,11 @@ const Login = () => {
           Continúe con su cuenta
         </h2>
       </header>
+
       <main className="w-full">
-        <form onSubmit={handleSubmit} className="mt-12 w-full">
+        <TestButtons setEmail={setEmail} setPassword={setPassword} />
+
+        <form onSubmit={handleSubmit} className="mt-8 w-full">
           <div className="mb-4 w-full">
             <input
               value={email}
@@ -61,6 +64,7 @@ const Login = () => {
               <i className="fas fa-eye text-gray-400"></i>
             </div>
           </div>
+
           <div>
             <button className="bg-blue-500 w-full text-white px-6 py-3 rounded-md mr-2 transition duration-300 hover:bg-blue-600 font-bold">
               CONTINUAR
@@ -86,3 +90,33 @@ const Login = () => {
 };
 
 export default Login;
+
+const TestButtons = ({ setEmail, setPassword }) => {
+  const setTest = (email, password) => {
+    setEmail(email);
+    setPassword(password);
+  };
+
+  return (
+    <div className="mt-5">
+      <button
+        onClick={() => setTest("ckynnd8@spotify.com", "cGdnd1HapM")}
+        className="text-[11px] px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      >
+        Test Client
+      </button>
+      <button
+        onClick={() => setTest("tamerici3@skype.com", "xbNRPGk")}
+        className="text-[11px] mx-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
+      >
+        Test Professional
+      </button>
+      <button
+        onClick={() => setTest("admin@gmail.com", "admin")}
+        className="text-[11px] px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+      >
+        Test Admin
+      </button>
+    </div>
+  );
+};
