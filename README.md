@@ -1,6 +1,6 @@
 # Handy Heroes
 
-es un proyecto de trabajo práctico para la universidad que se centra en cumplir con una serie de requisitos específicos para demostrar habilidades en el desarrollo con React.
+**Handy Heroes** es un proyecto de trabajo práctico para la universidad que se centra en cumplir con una serie de requisitos específicos para demostrar habilidades en el desarrollo con React.
 
 #### El proyecto se centra en cumplir los siguientes requisitos:
 
