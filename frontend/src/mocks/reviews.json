@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "client": {
+      "id": 2,
+      "username": "afarncomb1",
+      "firstName": "Alberta",
+      "lastName": "Farncomb",
+      "profileImg": "https://robohash.org/accusantiumminimamagni.png?size=50x50&set=set1",
+      "status": false
+    },
+    "professional": {
+      "id": 6,
+      "username": "ugorrick5",
+      "firstName": "Ursulino",
+      "lastName": "Gorrick",
+      "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Muy buen servicio!",
+    "date": "19 jul 2024",
+    "rating": 3
+  },
+  {
+    "id": 2,
+    "client": {
+      "id": 3,
+      "username": "kshama2",
+      "firstName": "Kizzie",
+      "lastName": "Shama",
+      "profileImg": "https://robohash.org/voluptatemdebitiset.png?size=50x50&set=set1",
+      "status": true
+    },
+    "professional": {
+      "id": 6,
+      "username": "ugorrick5",
+      "firstName": "Ursulino",
+      "lastName": "Gorrick",
+      "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Muy profesional y eficiente.",
+    "date": "19 jul 2024",
+    "rating": 4
+  },
+  {
+    "id": 4,
+    "client": {
+      "id": 7,
+      "username": "cchivers6",
+      "firstName": "Carlotta",
+      "lastName": "Chivers",
+      "profileImg": "https://robohash.org/voluptatequasiest.png?size=50x50&set=set1",
+      "status": true
+    },
+    "professional": {
+      "id": 10,
+      "username": "aloughan9",
+      "firstName": "Alexis",
+      "lastName": "Loughan",
+      "profileImg": "https://robohash.org/suntisteaperiam.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Buen servicio, aunque podría mejorar en algunos aspectos.",
+    "date": "19 jul 2024",
+    "rating": 3
+  },
+  {
+    "id": 5,
+    "client": {
+      "id": 9,
+      "username": "ckynnd8",
+      "firstName": "Chick",
+      "lastName": "Kynnd",
+      "profileImg": "https://robohash.org/commodiexplicaboveritatis.png?size=50x50&set=set1",
+      "status": true
+    },
+    "professional": {
+      "id": 4,
+      "username": "tamerici3",
+      "firstName": "Tremayne",
+      "lastName": "Americi",
+      "profileImg": "https://robohash.org/rerumoccaecatiprovident.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Excelente trabajo, volveré a contratar sus servicios.",
+    "date": "19 jul 2024",
+    "rating": 5
+  },
+  {
+    "id": 6,
+    "client": {
+      "id": 2,
+      "username": "afarncomb1",
+      "firstName": "Alberta",
+      "lastName": "Farncomb",
+      "profileImg": "https://robohash.org/accusantiumminimamagni.png?size=50x50&set=set1",
+      "status": false
+    },
+    "professional": {
+      "id": 6,
+      "username": "ugorrick5",
+      "firstName": "Ursulino",
+      "lastName": "Gorrick",
+      "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Trabajo rápido y de calidad.",
+    "date": "19 jul 2024",
+    "rating": 4
+  },
+  {
+    "id": 7,
+    "client": {
+      "id": 3,
+      "username": "kshama2",
+      "firstName": "Kizzie",
+      "lastName": "Shama",
+      "profileImg": "https://robohash.org/voluptatemdebitiset.png?size=50x50&set=set1",
+      "status": true
+    },
+    "professional": {
+      "id": 8,
+      "username": "thumblestone7",
+      "firstName": "Thorpe",
+      "lastName": "Humblestone",
+      "profileImg": "https://robohash.org/voluptasetexplicabo.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Buen servicio, pero algo costoso.",
+    "date": "19 jul 2024",
+    "rating": 3
+  },
+  {
+    "id": 8,
+    "client": {
+      "id": 5,
+      "username": "lfernihough4",
+      "firstName": "Luciana",
+      "lastName": "Fernihough",
+      "profileImg": "https://robohash.org/nobisplaceataut.png?size=50x50&set=set1",
+      "status": true
+    },
+    "professional": {
+      "id": 10,
+      "username": "aloughan9",
+      "firstName": "Alexis",
+      "lastName": "Loughan",
+      "profileImg": "https://robohash.org/suntisteaperiam.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Muy satisfecho con el resultado.",
+    "date": "19 jul 2024",
+    "rating": 5
+  },
+  {
+    "id": 9,
+    "client": {
+      "id": 7,
+      "username": "cchivers6",
+      "firstName": "Carlotta",
+      "lastName": "Chivers",
+      "profileImg": "https://robohash.org/voluptatequasiest.png?size=50x50&set=set1",
+      "status": true
+    },
+    "professional": {
+      "id": 4,
+      "username": "tamerici3",
+      "firstName": "Tremayne",
+      "lastName": "Americi",
+      "profileImg": "https://robohash.org/rerumoccaecatiprovident.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Cumplió con lo prometido, buena atención.",
+    "date": "19 jul 2024",
+    "rating": 4
+  },
+  {
+    "id": 10,
+    "client": {
+      "id": 9,
+      "username": "ckynnd8",
+      "firstName": "Chick",
+      "lastName": "Kynnd",
+      "profileImg": "https://robohash.org/commodiexplicaboveritatis.png?size=50x50&set=set1",
+      "status": true
+    },
+    "professional": {
+      "id": 6,
+      "username": "ugorrick5",
+      "firstName": "Ursulino",
+      "lastName": "Gorrick",
+      "profileImg": "https://robohash.org/voluptatemenimerror.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "Servicio excelente y muy amable.",
+    "rating": 5,
+    "date": "19 jul 2024"
+  },
+  {
+    "client": {
+      "id": 5,
+      "username": "lfernihough4",
+      "firstName": "Luciana",
+      "profileImg": "https://robohash.org/nobisplaceataut.png?size=50x50&set=set1",
+      "status": true
+    },
+    "professional": {
+      "id": 8,
+      "username": "thumblestone7",
+      "lastName": "Humblestone",
+      "profileImg": "https://robohash.org/voluptasetexplicabo.png?size=50x50&set=set1",
+      "status": true
+    },
+    "content": "asdasdasd",
+    "rating": "2",
+    "date": "19 jul 2024",
+    "createdAt": 1721432159187,
+    "modifiedAt": 1721432159187,
+    "id": 11
+  }
+]

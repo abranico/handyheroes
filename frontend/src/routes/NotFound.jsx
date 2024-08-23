@@ -8,9 +8,12 @@ const NotFound = () => {
   };
 
   return (
-    <div className="text-center mt-3">
+    <div className="text-center mt-10 text-xl">
       <h2> ¡Ups! La página solicitada no fue encontrada</h2>
-      <button className="text-center" onClick={goBackHandler}>
+      <button
+        className="mt-5 text-center text-blue-700"
+        onClick={goBackHandler}
+      >
         Volver
       </button>
     </div>

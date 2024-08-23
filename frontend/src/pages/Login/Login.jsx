@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,6 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   if (user) return <Navigate to="/services" replace />;
+
+  useDocumentTitle("Login");
 
   const handleSubmit = (e) => {
     e.preventDefault();

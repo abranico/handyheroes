@@ -57,7 +57,7 @@ const EditProfile = ({ toggle, id, role, handleSaveEdit }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center p-8">
+    <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center sm:p-8">
       <div className="bg-white max-w-3xl w-full rounded-lg shadow-lg">
         <header className="p-5 bg-blue-600 text-white rounded-t-lg text-center">
           <h2 className="text-2xl font-semibold">Editar Usuario</h2>

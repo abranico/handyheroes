@@ -1,5 +1,5 @@
+import { login, register } from "../services/local/authentication"; // local/server
 import { useState } from "react";
-import { login, register } from "../services/authentication";
 import useUsers from "./useUsers";
 
 const useAuthentication = () => {

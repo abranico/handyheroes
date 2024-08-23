@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import {
   getAllUsers,
   deleteUser,
   userPartialUpdate,
   createUser,
-} from "../services/users";
+} from "../services/local/users"; // local/server
+import { useEffect, useState } from "react";
 
 const useUsers = () => {
   const [users, setUsers] = useState([]);

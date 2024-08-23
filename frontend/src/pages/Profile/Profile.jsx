@@ -8,10 +8,11 @@ import ProfessionalProfile from "./components/professionalProfile/ProfessionalPr
 import EditProfile from "./components/editProfile/EditProfile";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
 import NotFound from "../../routes/NotFound";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const Profile = () => {
   const { username } = useParams();
-
+  useDocumentTitle(username);
   const { users, loading, handleUpdate } = useContext(UsersContext);
   const { user: userAuth } = useContext(AuthenticationContext);
 
@@ -28,7 +29,7 @@ const Profile = () => {
       : reviews.filter((review) => review.client.id === user.id);
   }, [reviews, user]);
 
-  if (!user) return <NotFound />;
+  if (!user || user.role === "admin") return <NotFound />;
 
   const fullname = user.firstName + " " + user.lastName;
 

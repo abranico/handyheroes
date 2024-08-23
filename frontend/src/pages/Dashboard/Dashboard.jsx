@@ -6,6 +6,7 @@ import { UsersContext } from "../../context/users/users.context";
 import AddUser from "./components/addUser/AddUser";
 import Table from "./components/table/Table";
 import DashboardServices from "./components/dashboardServices/DashboardServices";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const Dashboard = () => {
   const [filter, setFilter] = useState("");
@@ -30,6 +31,7 @@ const Dashboard = () => {
   const handleToggleAddUser = useCallback(() => {
     setToggleAddUser((prev) => !prev);
   }, []);
+  useDocumentTitle("Dashboard");
 
   return (
     <>

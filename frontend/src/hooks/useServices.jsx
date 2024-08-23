@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
 import {
   getAllServices,
   fetchAddService,
   fetchDeleteService,
   serviceUpdate,
-} from "../services/services";
+} from "../services/local/services"; // local/server
+import { useState, useEffect } from "react";
 
 const useServices = () => {
   const [services, setServices] = useState([]);

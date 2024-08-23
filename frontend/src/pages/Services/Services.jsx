@@ -4,11 +4,11 @@ import { MapIcon, SearchIcon } from "../../components/ui/icons";
 import { UsersContext } from "../../context/users/users.context";
 import User from "./components/user/User";
 import { ServicesContext } from "../../context/services/services.context";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const Services = () => {
   const { users, loading, error } = useContext(UsersContext);
   const { services: servicesFromApi } = useContext(ServicesContext);
-
   const [filters, setFilters] = useState({
     serviceId: null,
     professional: "",
@@ -49,6 +49,8 @@ const Services = () => {
       return matchesService && matchesProfessional && matchesLocation;
     });
   }, [professionals, filters]);
+
+  useDocumentTitle("Services");
 
   return (
     <>

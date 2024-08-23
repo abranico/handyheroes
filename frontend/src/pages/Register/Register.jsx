@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
 import BasicData from "./components/basicData/BasicData";
 import ChooseRol from "./components/chooseRol/ChooseRol";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const initialErrors = {
   username: false,
@@ -17,6 +18,7 @@ const initialErrors = {
 
 const Register = () => {
   const navigate = useNavigate();
+  useDocumentTitle("Register");
 
   const {
     handleRegister,

@@ -1,29 +1,46 @@
 import { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authentication/authentication.context";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const Landing = () => {
   const { user } = useContext(AuthenticationContext);
   if (user) return <Navigate to="/services" replace />;
+  useDocumentTitle("");
+
   return (
     <div className="flex flex-col h-screen ">
-      <header className="flex justify-between flex-wrap md:mx-14 items-center p-6">
-        <Link to="/" className="flex items-center hover:opacity-70">
-          <img
-            src="logo.png"
-            alt="HandyHeroes Logo"
-            className="w-8 rounded-full"
-          />
-          <h1 className="text-xl md:text-2xl font-bold text-blue-900 ml-2">
-            HandyHeroes
-          </h1>
-        </Link>
-        <Link
-          to="/login"
-          className="bg-blue-500 text-white px-6 md:px-10 py-2 rounded-lg hover:bg-blue-600 font-bold mt-4 md:mt-0"
-        >
-          Unirse
-        </Link>
+      <header>
+        <p className="bg-gray-700 text-white text-center   p-1 text-sm">
+          Esta es una versión de demostración. Algunas funcionalidades, como la
+          persistencia, pueden estar limitadas. Para probar la versión completa,
+          <a
+            href="https://github.com/abranico/handyheroes-frontend"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 underline ml-1 "
+          >
+            visita el repositorio.
+          </a>
+        </p>
+        <nav className="flex justify-between flex-wrap md:mx-14 items-center p-6">
+          <Link to="/" className="flex items-center hover:opacity-70">
+            <img
+              src="logo.png"
+              alt="HandyHeroes Logo"
+              className="w-8 rounded-full"
+            />
+            <h1 className="text-xl md:text-2xl font-bold text-blue-900 ml-2">
+              HandyHeroes
+            </h1>
+          </Link>
+          <Link
+            to="/login"
+            className="bg-blue-500 text-white px-6 md:px-10 py-2 rounded-lg hover:bg-blue-600 font-bold mt-4 md:mt-0"
+          >
+            Unirse
+          </Link>
+        </nav>
       </header>
 
       <main className="flex items-start justify-center mx-14 mb-24 flex-1">

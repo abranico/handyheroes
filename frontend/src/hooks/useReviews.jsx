@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
 import {
   getAllReviews,
   fetchAddReview,
   fetchDeleteReview,
-} from "../services/reviews";
+} from "../services/local/reviews"; // local/server
+import { useState, useEffect } from "react";
 
 const useReviews = () => {
   const [reviews, setReviews] = useState([]);
