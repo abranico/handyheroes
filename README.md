@@ -17,7 +17,7 @@
 
 ## Descripción
 
-Handy Heroes es una aplicación web desarrollada con React que permite a los usuarios registrarse como profesionales o clientes. Los profesionales pueden ofrecer sus oficios, y los clientes pueden dejar reseñas sobre los servicios recibidos. La aplicación utiliza una [FAKE API](https://github.com/robinhuy/fake-api-nodejs) como backend para simular las funcionalidades de un sistema real.
+Handy Heroes es una aplicación web desarrollada con React que permite a los usuarios registrarse como profesionales o clientes. Los profesionales pueden ofrecer sus oficios, y los clientes pueden dejar reseñas sobre los servicios recibidos. 
 
 ## Funcionalidades
 
@@ -27,29 +27,11 @@ Handy Heroes es una aplicación web desarrollada con React que permite a los usu
 - **Dashboard Admin**: El usuario tipo admin tiene acceso a un dashboard para gestionar la aplicación.
 - **Visualización**: Los usuarios pueden ver y gestionar las reseñas y los oficios ofrecidos.
 
-## Tecnologías Utilizadas
-
-- **Frontend**: React
-- **Backend**: [Fake API (simulada para este proyecto)](https://github.com/robinhuy/fake-api-nodejs)
 
 ## Instalación y Ejecución
 
-Para instalar las dependencias y ejecutar el proyecto tanto en el frontend como en el backend, sigue estos pasos:
-
-1. Navega a la carpeta `frontend`:
-    ```bash
-    cd frontend
-    ```
-
-2. Ejecuta el siguiente comando para instalar las dependencias y ejecutar ambos proyectos:
-    ```bash
-    npm run install-and-run
-    ```
-
-Este comando realiza lo siguiente:
-- Instala las dependencias en la carpeta `frontend` y `backend`.
-- Ejecuta `npm run dev` en la carpeta `frontend` y `backend` simultáneamente.
-
+Para la demostración del proyecto, se utilizan datos locales en lugar de una API real. Esto permite que la aplicación funcione sin un backend en funcionamiento. Para utilizar el backend real, simplemente clona el repositorio del backend y ejecútalo. Puedes encontrar el repositorio del backend [aquí](https://github.com/abranico/handyheroes-backend).
+   
 ## Vistas
 
 <img width="500px" heigth="auto" src="https://github.com/user-attachments/assets/93cfcf88-5604-467b-945b-c8d8f5212dc5">
