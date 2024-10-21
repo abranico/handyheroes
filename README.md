@@ -30,7 +30,7 @@ Handy Heroes es una aplicación web desarrollada con React que permite a los usu
 
 ## Instalación y Ejecución
 
-Para la demostración del proyecto, se utilizan datos locales en lugar de una API real. Esto permite que la aplicación funcione sin un backend en funcionamiento. Para utilizar el backend real, simplemente clona el repositorio del backend y ejecútalo. Puedes encontrar el repositorio del backend [aquí](https://github.com/abranico/handyheroes-backend).
+Para la demostración del proyecto, se utilizan datos locales en lugar de una API real. Esto permite que la aplicación funcione sin un backend en funcionamiento. Para utilizar el backend real, simplemente clona el repositorio backend y ejecútalo.
    
 ## Vistas
 
