@@ -57,7 +57,7 @@ namespace Infrastructure.Services
         {
             var user = await _userRepository.GetByEmail(request.Email);
 
-            if (user == null || user.Password != request.Password)
+            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
             {
                 return null;
             }
