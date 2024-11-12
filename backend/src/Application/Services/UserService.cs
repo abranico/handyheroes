@@ -42,7 +42,7 @@ namespace Application.Services
             if (newUser.lastName != null) { user.LastName = newUser.lastName; }
             if (newUser.username != null) { user.Username = newUser.username; }
             if (newUser.email != null) { user.Email = newUser.email; }
-            if (newUser.password != null) { user.Password = newUser.password; }
+            if (newUser.password != null) { user.Password = BCrypt.Net.BCrypt.HashPassword(newUser.password); }
             if (newUser.profileImg != null) { user.ProfileImg = newUser.profileImg; }
             if (newUser.status.HasValue) { user.Status = newUser.status.Value; }
             if (newUser.role.HasValue) { user.Role = newUser.role.Value; }
@@ -71,7 +71,7 @@ namespace Application.Services
                 LastName = newUser.lastName,
                 Username = newUser.username,
                 Email = newUser.email,
-                Password = newUser.password,
+                Password = BCrypt.Net.BCrypt.HashPassword(newUser.password),
                 Role = userRole
             };
 
