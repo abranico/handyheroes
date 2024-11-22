@@ -11,10 +11,12 @@ namespace Web.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly IConfiguration _configuration;
 
-        public AuthenticationController(IAuthenticationService authenticationService)
+        public AuthenticationController(IAuthenticationService authenticationService, IConfiguration configuration)
         {
             _authenticationService = authenticationService;
+            _configuration = configuration;
         }
 
         [HttpPost]
@@ -23,7 +25,18 @@ namespace Web.Controllers
             try
             {
                 var token = await _authenticationService.Authenticate(request);
-                return Ok(token);
+
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,            
+                    Secure = true,             
+                    Expires = DateTime.UtcNow.AddMinutes(_configuration.GetValue<int>("Authentication:ExpirationTimeInMinutes")), 
+                    SameSite = SameSiteMode.None
+                };
+
+                HttpContext.Response.Cookies.Append("access_token", token, cookieOptions);
+
+                return Ok();
             } 
             catch (NotAllowedException ex)
             {
