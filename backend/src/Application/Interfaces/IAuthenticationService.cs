@@ -11,5 +11,7 @@ namespace Application.Interfaces
     public interface IAuthenticationService
     {
         Task<string> Authenticate(AuthenticationRequest request);
+        Task<string> RefreshToken(string refreshToken);
+        Task Logout(int userId);
     }
 }

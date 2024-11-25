@@ -40,5 +40,9 @@ namespace Infrastructure.Data
             return await _context.Users.Include(u => u.Service).FirstOrDefaultAsync(u => u.Email == email);
         }
         
+        public async Task<User?> GetByRefreshToken(string refreshToken)
+        {
+            return await _context.Users.Include(u => u.Service).FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+        }
     }
 }

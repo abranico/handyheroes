@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BCrypt.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Exceptions;
@@ -12,6 +13,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
+using System.Security.Cryptography;
 
 namespace Infrastructure.Services
 {
@@ -30,27 +32,41 @@ namespace Infrastructure.Services
         {           
             User user = await ValidateUser(request) ?? throw new NotAllowedException("User authentication failed");
 
-            var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Authentication:SecretForKey"])); 
-            var credentials = new SigningCredentials(securityPassword, SecurityAlgorithms.HmacSha256);
+            string accessToken = GenerateAccessToken(user);
+            string refreshToken = GenerateRefreshToken();
 
-            var claimsForToken = new List<Claim>();
-            claimsForToken.Add(new Claim("sub", user.Id.ToString())); 
-            claimsForToken.Add(new Claim("given_name", user.FirstName));  
-            claimsForToken.Add(new Claim("role", user.Role.ToString())); 
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(int.Parse(_config["Authentication:ExpirationTimeInDays"]!));
 
-            var jwtSecurityToken = new JwtSecurityToken( 
-              _config["Authentication:Issuer"],
-              _config["Authentication:Audience"],
-              claimsForToken,
-              DateTime.UtcNow,
-              DateTime.UtcNow.AddMinutes(int.Parse(_config["Authentication:ExpirationTimeInMinutes"]!)),
-              credentials);
+            await _userRepository.Update(user);
 
-            var tokenToReturn = new JwtSecurityTokenHandler() 
-                .WriteToken(jwtSecurityToken);
+            return accessToken;
+        }
 
-            return tokenToReturn.ToString();
+        public async Task Logout(int userId)
+        {
+            var user = await _userRepository.GetById(userId) ?? throw new NotFoundException("Session not found");
 
+            user.RefreshToken = null;
+            user.RefreshTokenExpiryTime = null;
+
+            await _userRepository.Update(user);
+        }
+
+        
+        
+        public async Task<string> RefreshToken(string refreshToken)
+        {
+            var user = await _userRepository.GetByRefreshToken(refreshToken);
+
+            if(user == null || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+            {
+                throw new SecurityTokenException("Invalid or expired refresh token.");
+            }
+
+            string accessToken = GenerateAccessToken(user);
+
+            return accessToken;
         }
 
         private async Task<User?> ValidateUser(AuthenticationRequest request)
@@ -61,9 +77,43 @@ namespace Infrastructure.Services
             {
                 return null;
             }
-            
+
             return user;
-        }       
+        }
+
+        private string GenerateAccessToken(User user)
+        {
+            var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Authentication:SecretForKey"]!));
+            var credentials = new SigningCredentials(securityPassword, SecurityAlgorithms.HmacSha256);
+            
+            var claims = new List<Claim>()
+            {
+                new Claim("sub", user.Id.ToString()),
+                new Claim("given_name", user.FirstName),
+                new Claim("role", user.Role.ToString())
+            };
+
+            var token = new JwtSecurityToken(
+              _config["Authentication:Issuer"],
+              _config["Authentication:Audience"],
+              claims,
+              DateTime.UtcNow,
+              DateTime.UtcNow.AddMinutes(int.Parse(_config["Authentication:ExpirationTimeInMinutes"]!)),
+              credentials);
+
+            var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
+            return accessToken.ToString();
+        }
+        
+        private string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+                return Convert.ToBase64String(randomNumber);
+            }
+        }
 
     }
 }

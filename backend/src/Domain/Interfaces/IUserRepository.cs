@@ -13,5 +13,6 @@ namespace Domain.Interfaces
         Task<User?> GetByUsername(string username);
         Task<User?> GetById(int id);
         Task<User?> GetByEmail(string email);
+        Task<User?> GetByRefreshToken(string refreshToken);
     }
 }

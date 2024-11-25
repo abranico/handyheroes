@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models;
 using Application.Models.Requests;
+using BCrypt.Net;
 using Domain.Entities;
 using Domain.Enums;
 using Domain.Exceptions;
