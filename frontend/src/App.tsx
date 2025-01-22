@@ -4,6 +4,7 @@ import { AuthContextProvider } from "./context/auth.context";
 import Protected from "./components/Protected";
 import Services from "./pages/services/Services";
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
 
